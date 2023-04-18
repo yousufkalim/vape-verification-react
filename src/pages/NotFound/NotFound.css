@@ -1,0 +1,59 @@
+.notFoundRow {
+  background-color: #0397eb;
+}
+.NotFoundDiv1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-bottom: 2.5%;
+  height: 50vh;
+  background-color: #0397eb;
+}
+.NotFoundDiv2 {
+  background: #08374b;
+  clip-path: polygon(100% 0%, 0% 18%, 0% 100%, 100% 100%);
+  height: 50vh;
+}
+.notFoundBox1 {
+  width: 42%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 3rem;
+  border: 2px solid black;
+  margin-bottom: 1px;
+  padding: 3% 3%;
+  text-align: center;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.notfoundImg {
+  margin: auto;
+}
+.title1 {
+  color: #236fda;
+  font-size: 30px;
+  font-weight: 900;
+}
+.title2 {
+  margin-top: 30px;
+  color: black;
+  font-size: 30px;
+  font-weight: 600;
+}
+.title3 {
+  color: black;
+  font-size: 30px;
+  font-weight: 600;
+}
+.title4 {
+  color: gray;
+  font-size: 20px;
+  width: 80%;
+  margin: auto;
+  font-weight: 500;
+}

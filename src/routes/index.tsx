@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import Home from '../pages/home/Home';
+import NotFound from '../pages/NotFound/NotFound';
 
 // Types
 interface BaseRoute {
@@ -24,8 +25,12 @@ type Route = Element | Navigate;
 // Routes
 const routes: Route[] = [
   {
-    path: '/',
+    path: '/:brandURL',
     element: <Home />,
+  },
+  {
+    path: '/',
+    element: <NotFound />,
   },
   {
     path: '*',
