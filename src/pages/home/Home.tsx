@@ -52,6 +52,7 @@ const Home: FC = () => {
   const [code, setCode] = useState<string>('');
   const [codeStatus, setCodeStatus] = useState<string>('');
   const [alreadyScanDate, setAlreadyScaneDate] = useState<string>('');
+  const [timestate, setTimeState] = useState<string>('');
   const [statusBg, setStatusBg] = useState<string>('');
   const [statusImage, setStatusImage] = useState<string>('');
   const [brand, setBrand] = useState<IBrand>({
@@ -148,17 +149,20 @@ const Home: FC = () => {
           const { status, message, validationTime } = err.response.data;
           if (status === 'used') {
             if (validationTime) {
-              const date = moment(validationTime).format('h:mm A M-D-YYYY ');
+              // const date = moment(validationTime).format('h:mm A DD-MMM-YYYY ');
+              const date = moment(validationTime).format('DD-MMM-YYYY ');
+              const time = moment(validationTime).format('h:mm A');
               // const formatedDate = moment(validationTime, 'M/D/YYYY h:mmA');
               setCodeStatus(
                 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 
-                // `This code has already been scanned on ${new Date(validationTime as string)}`,
-                `This code has already been scanned on`,
+                // `This code was already been scanned on ${new Date(validationTime as string)}`,
+                `This code was already been scanned on`,
               );
+              setTimeState(time);
               setAlreadyScaneDate(date);
             } else {
-              setCodeStatus(`This code has already been scanned on`);
+              setCodeStatus(`This code was already been scanned on`);
             }
 
             setStatusBg(UsedBg);
@@ -275,7 +279,7 @@ const Home: FC = () => {
             {/* <div className="responsePopup"> */}
             <div
               className={`${
-                codeStatus === 'This code has already been scanned on'
+                codeStatus === 'This code was already been scanned on'
                   ? 'responsePopup'
                   : 'invalidresponsePopup'
               }`}
@@ -290,14 +294,20 @@ const Home: FC = () => {
                     </div>
                     <div
                       className={`${
-                        codeStatus === 'This code has already been scanned on'
+                        codeStatus === 'This code was already been scanned on'
                           ? 'statusScanned'
                           : 'status'
                       }`}
                     >
                       {codeStatus}
                       <div className="ScanedDate">
-                        {codeStatus === 'This code has already been scanned on' && alreadyScanDate}
+                        {codeStatus === 'This code was already been scanned on' && (
+                          <div>
+                            <span>{timestate}</span>
+                            <span className="dateLine"></span>
+                            <span>{alreadyScanDate}</span>
+                          </div>
+                        )}
                       </div>
                       {/* {alreadyScanDate && alreadyScanDate} */}
                       {codeStatus === 'This code is invalid.' && (

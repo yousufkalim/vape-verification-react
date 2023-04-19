@@ -19,6 +19,13 @@
   bottom: 18px;
   cursor: pointer;
 }
+.dateLine {
+  display: inline-block;
+  height: 15px;
+  width: 1px;
+  margin-inline: 14px;
+  background: gray;
+}
 .home_wrapper {
   width: 100%;
   padding-top: 30px;
@@ -349,15 +356,18 @@
     display: none;
   }
   .responsePopup {
+    position: absolute;
     width: 87%;
-    bottom: 18%;
+    bottom: 10%;
     left: 7%;
   }
   .invalidresponsePopup {
+    position: absolute;
     width: 87%;
-    bottom: 18%;
+    bottom: 10%;
     left: 7%;
   }
+
   .morinfoDiv {
     display: flex;
     align-items: center;
