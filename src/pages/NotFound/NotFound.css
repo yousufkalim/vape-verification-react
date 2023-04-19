@@ -57,3 +57,9 @@
   margin: auto;
   font-weight: 500;
 }
+
+@media screen and (max-width: 700px) {
+  .notFoundBox1 {
+    width: 95%;
+  }
+}
