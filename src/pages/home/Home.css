@@ -279,3 +279,105 @@
   color: #ff8c39;
   font-size: 22px;
 }
+@media screen and (max-width: 700px) {
+  .home {
+    padding: 20px 5%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 20px;
+    background-size: 70%;
+  }
+  .home_content_top {
+    flex-direction: column-reverse;
+    margin-top: 3rem;
+    padding-block: 5rem 3rem;
+  }
+  .home_left {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .home_right {
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: none;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #236fda;
+    padding-bottom: 3rem;
+  }
+  .home_logo {
+    padding-bottom: 1%;
+  }
+  .home_content_bottom {
+    background-size: 30%;
+  }
+  .home_status_content {
+    padding-block: 4rem 8rem;
+  }
+  .status span {
+    margin-right: 5px;
+  }
+  .status {
+    font-size: 3rem;
+  }
+  .status img {
+    width: 4rem;
+  }
+  .step_label {
+    font-size: 1.6rem;
+  }
+  .step_description {
+    font-size: 1.3rem;
+  }
+  .step_span_responsive {
+    display: inline;
+    font-size: 13px;
+  }
+  .step_web_view {
+    display: none;
+  }
+  .home_content {
+    width: 95%;
+    margin-top: 50px;
+  }
+  .home_footer {
+    height: 50vh;
+    padding-top: 80%;
+  }
+  .logoFixed {
+    display: none;
+  }
+  .responsePopup {
+    width: 87%;
+    bottom: 18%;
+    left: 7%;
+  }
+  .invalidresponsePopup {
+    width: 87%;
+    bottom: 18%;
+    left: 7%;
+  }
+  .morinfoDiv {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    top: -10px;
+    margin-right: 10px;
+  }
+  .home_status {
+    padding: 20px 0px 10px 0px;
+    margin-left: 3%;
+  }
+  .status {
+    font-size: 25px;
+    padding: 0px 0px 0px 10px;
+  }
+  .statusScanned {
+    font-size: 16px;
+  }
+  .ScanedDate {
+    font-size: 18px;
+  }
+}
