@@ -192,7 +192,7 @@ const Home: FC = () => {
   } else {
     return (
       <div
-        className=""
+        className="mainDiv1"
         style={{
           // background: `url(${logo})`,
           backgroundColor: brand?.preferences.color,
@@ -265,82 +265,80 @@ const Home: FC = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="">
-            <img src={logo} className="logoFixed" />
-          </div>
+        <div className="">
+          <img src={logo} className="logoFixed" />
+        </div>
+        <div
+          className="bottomDiv"
+          style={{
+            // background: `url(${logo})`,
+            background: brand?.preferences.secondaryColor,
+          }}
+        >
+          {/* <div className="responsePopup"> */}
           <div
-            className="bottomDiv"
-            style={{
-              // background: `url(${logo})`,
-              background: brand?.preferences.secondaryColor,
-            }}
+            className={`${
+              codeStatus === 'This code was already been scanned on'
+                ? 'responsePopup'
+                : 'invalidresponsePopup'
+            }`}
           >
-            {/* <div className="responsePopup"> */}
-            <div
-              className={`${
-                codeStatus === 'This code was already been scanned on'
-                  ? 'responsePopup'
-                  : 'invalidresponsePopup'
-              }`}
-            >
-              {codeStatus && (
-                <>
-                  <div className="home_status">
-                    <div>
-                      <span>
-                        <img src={statusImage} alt="statusImage" />
-                      </span>{' '}
-                    </div>
-                    <div
-                      className={`${
-                        codeStatus === 'This code was already been scanned on'
-                          ? 'statusScanned'
-                          : 'status'
-                      }`}
-                    >
-                      {codeStatus}
-                      <div className="ScanedDate">
-                        {codeStatus === 'This code was already been scanned on' && (
-                          <div>
-                            <span>{timestate}</span>
-                            <span className="dateLine"></span>
-                            <span>{alreadyScanDate}</span>
-                          </div>
-                        )}
-                      </div>
-                      {/* {alreadyScanDate && alreadyScanDate} */}
-                      {codeStatus === 'This code is invalid.' && (
-                        <div className="invalidcodeText">
-                          Do not use product until verifying authenticity
+            {codeStatus && (
+              <>
+                <div className="home_status">
+                  <div>
+                    <span>
+                      <img src={statusImage} alt="statusImage" />
+                    </span>{' '}
+                  </div>
+                  <div
+                    className={`${
+                      codeStatus === 'This code was already been scanned on'
+                        ? 'statusScanned'
+                        : 'status'
+                    }`}
+                  >
+                    {codeStatus}
+                    <div className="ScanedDate">
+                      {codeStatus === 'This code was already been scanned on' && (
+                        <div>
+                          <span>{timestate}</span>
+                          <span className="dateLine"></span>
+                          <span>{alreadyScanDate}</span>
                         </div>
                       )}
                     </div>
+                    {/* {alreadyScanDate && alreadyScanDate} */}
+                    {codeStatus === 'This code is invalid.' && (
+                      <div className="invalidcodeText">
+                        Do not use product until verifying authenticity
+                      </div>
+                    )}
                   </div>
+                </div>
 
-                  <div className="morinfoDiv">
-                    <img src={Question} alt="Question" />
-                    <a
-                      href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      <span className="moreInfospan"> More information</span>
-                    </a>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className="home_footer">
-              © 2023{' '}
-              <span>
-                VeriScan
-                {/* <a href="https://falconitconsultant.com" target="_blank" rel="noreferrer">
+                <div className="morinfoDiv">
+                  <img src={Question} alt="Question" />
+                  <a
+                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span className="moreInfospan"> More information</span>
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+          <div className="home_footer">
+            © 2023{' '}
+            <span>
+              VeriScan
+              {/* <a href="https://falconitconsultant.com" target="_blank" rel="noreferrer">
                   @Falcon Consulting
                 </a> */}
-              </span>
-              , All Rights Reserved.
-            </div>
+            </span>
+            , All Rights Reserved.
           </div>
         </div>
       </div>
