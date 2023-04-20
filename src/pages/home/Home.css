@@ -1,3 +1,8 @@
+.mainDiv1 {
+  height: 100vh;
+  overflow-y: auto;
+}
+
 .home {
   width: 100%;
   /* height: 100%; */
@@ -29,7 +34,8 @@
 .home_wrapper {
   width: 100%;
   padding-top: 30px;
-  height: 52vh;
+  min-height: 52%;
+  height: fit-content;
 }
 .logoFixed {
   position: fixed;
@@ -41,7 +47,13 @@
 }
 .bottomDiv {
   background: rgb(3, 40, 56);
+  height: 48%;
   clip-path: polygon(100% 0%, 0% 18%, 0% 100%, 100% 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 20px;
 }
 .bg_logo {
   position: absolute;
@@ -111,19 +123,15 @@
 }
 .responsePopup {
   width: 50%;
-  position: fixed;
   background: white;
-  bottom: 12%;
-  left: 25%;
   border-radius: 20px;
+  margin-bottom: 70px;
 }
 .invalidresponsePopup {
   width: 39%;
-  position: fixed;
   background: white;
-  bottom: 12%;
-  left: 31%;
   border-radius: 20px;
+  margin-bottom: 70px;
 }
 
 /*    LEFT SIDE   */
@@ -240,8 +248,6 @@
   color: rgb(222, 214, 214);
   font-size: 1.6rem;
   text-align: center;
-  padding-top: 22%;
-  padding-bottom: 4%;
 }
 
 .home_loading {
@@ -349,23 +355,19 @@
     margin-top: 50px;
   }
   .home_footer {
-    height: 50vh;
-    padding-top: 80%;
+    /* height: 50vh; */
+    /* padding-top: 80%; */
   }
   .logoFixed {
     display: none;
   }
   .responsePopup {
-    position: absolute;
-    width: 87%;
-    bottom: 10%;
-    left: 7%;
+    width: 90%;
+    margin-bottom: 40px;
   }
   .invalidresponsePopup {
-    position: absolute;
-    width: 87%;
-    bottom: 10%;
-    left: 7%;
+    width: 90%;
+    margin-bottom: 40px;
   }
 
   .morinfoDiv {
