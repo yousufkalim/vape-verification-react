@@ -24,13 +24,7 @@ switch (window.location.host) {
     env = 'staging';
     break;
 
-  case 'getveriscan.com':
-    baseUrl = 'https://api.getveriscan.com/api/v1';
-    mediaUrl = 'https://api.getveriscan.com';
-    env = 'prod';
-    break;
-
-  case 'www.getveriscan.com':
+  case 'client.getveriscan.com':
     baseUrl = 'https://api.getveriscan.com/api/v1';
     mediaUrl = 'https://api.getveriscan.com';
     env = 'prod';
