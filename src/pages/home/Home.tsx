@@ -251,7 +251,7 @@ const Home: FC = () => {
                   <div>
                     <input
                       className="input_field"
-                      placeholder="A2XF1-cd3E"
+                      placeholder="A1A1-A1A1"
                       type="text"
                       value={code}
                       onChange={handleChange}
