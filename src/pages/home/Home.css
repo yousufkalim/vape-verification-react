@@ -55,6 +55,16 @@
   align-items: center;
   padding-bottom: 20px;
 }
+.bottomDivWithbrand {
+  background: rgb(3, 40, 56);
+  height: 48%;
+  clip-path: polygon(100% 0%, 0% 18%, 0% 100%, 100% 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10%;
+}
 .bg_logo {
   position: absolute;
   bottom: 0;
@@ -207,6 +217,7 @@
   background-position: bottom left;
   background-size: 9%;
 }
+
 .home_status {
   display: flex;
   justify-content: left;

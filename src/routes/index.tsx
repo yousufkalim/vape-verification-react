@@ -29,6 +29,10 @@ const routes: Route[] = [
     element: <Home />,
   },
   {
+    path: '/:brandURL/:brandcode',
+    element: <Home />,
+  },
+  {
     path: '/',
     element: <NotFound />,
   },
