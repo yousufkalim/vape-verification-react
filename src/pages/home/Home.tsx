@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useLayoutEffect, useState } from 'react';
+import React, { FC, FormEvent, useLayoutEffect, useState, useEffect } from 'react';
 import api from '../../api/request';
 import moment from 'moment';
 
@@ -89,9 +89,9 @@ const Home: FC = () => {
   //   }
   // }, []);
   const params = useParams();
+  const { brandURL, brandcode } = params;
 
   useLayoutEffect(() => {
-    const { brandURL } = params;
     if (brandURL) {
       setLoading(true);
       api<IResponse>('get', `/users/brand/${brandURL}`)
@@ -105,6 +105,11 @@ const Home: FC = () => {
         });
     }
   }, []);
+  useEffect(() => {
+    if (brandcode && brand.id) {
+      verifyBrandCode(brandcode);
+    }
+  }, [brand]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.value.length < 10) {
@@ -127,11 +132,14 @@ const Home: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    verifyBrandCode(code);
+  };
+  const verifyBrandCode = (bCode: string): void => {
     const body = {
-      codeId: code,
+      codeId: bCode,
       brandId: brand.id,
     };
-    if (code !== '') {
+    if (bCode !== '') {
       setSubmitLoading(true);
       api<IBody>('post', '/codes/validate', body)
         .then((res) => {
@@ -222,48 +230,50 @@ const Home: FC = () => {
             {/* <div className="logo_title">{brand?.name}</div> */}
             {/* <img src={HomeLogo} alt="logo" /> */}
           </div>
-          <div className="home_content">
-            <div className="home_content_top">
-              <div className="home_left">
-                <div
-                  className="heading_main"
-                  // style={{
-                  //   // background: `url(${logo})`,
-                  //   color: brand?.preferences.secondaryColor,
-                  // }}
-                >
-                  Verify your product
-                  <a
-                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
-                    rel="noreferrer"
-                    target="_blank"
+          {!brandcode && (
+            <div className="home_content">
+              <div className="home_content_top">
+                <div className="home_left">
+                  <div
+                    className="heading_main"
+                    // style={{
+                    //   // background: `url(${logo})`,
+                    //   color: brand?.preferences.secondaryColor,
+                    // }}
                   >
-                    <img src={Question1} alt="Question" className="questionimg1" />
-                  </a>
-                </div>
-                <form
-                  onSubmit={(e) => {
-                    handleSubmit(e);
-                  }}
-                  className="code_field"
-                >
-                  <div className="field_label">Enter Your Code</div>
-                  <div>
-                    <input
-                      className="input_field"
-                      placeholder="A1A1-A1A1"
-                      type="text"
-                      value={code}
-                      onChange={handleChange}
-                    />
+                    Verify your product
+                    <a
+                      href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <img src={Question1} alt="Question" className="questionimg1" />
+                    </a>
                   </div>
-                  <button disabled={!code || submitLoading} className="verify_btn">
-                    {codeStatus ? 'Verify another code' : 'Verify'}
-                  </button>
-                </form>
+                  <form
+                    onSubmit={(e) => {
+                      handleSubmit(e);
+                    }}
+                    className="code_field"
+                  >
+                    <div className="field_label">Enter Your Code</div>
+                    <div>
+                      <input
+                        className="input_field"
+                        placeholder="A1A1-A1A1"
+                        type="text"
+                        value={code}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <button disabled={!code || submitLoading} className="verify_btn">
+                      {codeStatus ? 'Verify another code' : 'Verify'}
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="">
           <img src={logo} className="logoFixed" />
