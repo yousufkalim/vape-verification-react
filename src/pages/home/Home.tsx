@@ -40,6 +40,7 @@ interface IBody {
 
 interface IResponse {
   brand: IBrand;
+  feedbackForm: IfeedbackForm;
 }
 interface customizeButton {
   btnType: string;
@@ -77,6 +78,14 @@ interface IBrand {
   customizeButton?: customizeButton;
   description?: string;
 }
+interface IfeedbackForm {
+  _id: string;
+  brand: string;
+  filedLabel: string;
+  filedPlaceholder: string;
+  filedRequired: boolean;
+  filedActive: boolean;
+}
 
 // const status = 'valid';
 const Home: FC = () => {
@@ -86,6 +95,9 @@ const Home: FC = () => {
   const [timestate, setTimeState] = useState<string>('');
   const [statusBg, setStatusBg] = useState<string>('');
   const [statusImage, setStatusImage] = useState<string>('');
+  const [feedbackForms, setFeedbackForms] = useState<IfeedbackForm[] | any>([]);
+  // eslint-disable-next-line
+  const [feedbacks, setFeedbacks] = useState<any>([]);
   const [brand, setBrand] = useState<IBrand>({
     name: '',
     id: '',
@@ -116,6 +128,7 @@ const Home: FC = () => {
 
   const [loading, setLoading] = useState<boolean>(true);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+  // eslint-disable-next-line
 
   const navigate = useNavigate();
 
@@ -145,6 +158,7 @@ const Home: FC = () => {
           // console.log('res braand', res.brand);
           setLoading(false);
           setBrand(res.brand);
+          setFeedbackForms(res.feedbackForm);
         })
         .catch(() => {
           navigate('/');
@@ -182,12 +196,18 @@ const Home: FC = () => {
     verifyBrandCode(code);
   };
   const verifyBrandCode = (bCode: string): void => {
+    const allFields = feedbackForms?.map((item: any) => ({
+      name: item.label,
+      value: item.value,
+    }));
     const body = {
       codeId: bCode,
       brandId: brand.id,
+      feedbacks: allFields,
     };
     if (bCode !== '') {
       setSubmitLoading(true);
+      console.log('All field ', allFields);
       api<IBody>('post', '/codes/validate', body)
         .then((res) => {
           if (res.status === 'valid') {
@@ -197,6 +217,11 @@ const Home: FC = () => {
             setStatusBg(ValidBg);
             setStatusImage(ValidImg);
           }
+          const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {
+            return { ...feedbackForm, value: '' };
+          });
+          setFeedbackForms(feedbackIs);
+
           setCode('');
           setSubmitLoading(false);
         })
@@ -214,6 +239,10 @@ const Home: FC = () => {
                 // `This code has already been scanned on ${new Date(validationTime as string)}`,
                 `This code has already been scanned on`,
               );
+              const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {
+                return { ...feedbackForm, value: '' };
+              });
+              setFeedbackForms(feedbackIs);
               setTimeState(time);
               setAlreadyScaneDate(date);
             } else {
@@ -224,6 +253,10 @@ const Home: FC = () => {
             setStatusImage(UsedImage);
           }
           if (status === 'invalid') {
+            const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {
+              return { ...feedbackForm, value: '' };
+            });
+            setFeedbackForms(feedbackIs);
             setCodeStatus(message);
             setStatusBg(InValidBg);
             setStatusImage(InValidImage);
@@ -236,6 +269,7 @@ const Home: FC = () => {
     }
   };
   console.log('brandIs', brand);
+  console.log('feedbackForm', feedbackForms);
 
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
@@ -265,11 +299,26 @@ const Home: FC = () => {
       // favicon.href = favIs;
     }
   }, []);
+
   // eslint-disable-next-line
   const Selectedimg = brand?.background?.selectedImg
     ? `${mediaUrl}/${brand?.background?.selectedImg}`
     : '';
   const uploadedImg = brand?.background?.img ? `${mediaUrl}/${brand?.background?.img}` : '';
+
+  const handleChangeinput = (e: React.ChangeEvent<HTMLInputElement>, i: any, field: any): any => {
+    const feedbackIs = feedbackForms?.map((feedbackForm: any, ind: any): any => {
+      if (ind === i) {
+        return { ...feedbackForm, value: e.target.value, name: field };
+      } else {
+        return { ...feedbackForm };
+      }
+    });
+    setFeedbackForms(feedbackIs);
+
+    // setFeedbackForms(updatedForm);
+  };
+  console.log('feedbackForms', feedbackForms);
 
   if (loading) {
     return (
@@ -374,6 +423,28 @@ const Home: FC = () => {
                         onChange={handleChange}
                       />
                     </div>
+                    {feedbackForms.length !== 0 &&
+                      feedbackForms.map((form: any, i: any) => (
+                        <>
+                          {form.isActive && (
+                            <>
+                              {' '}
+                              <div className="field_label">{form.label}</div>
+                              <div>
+                                <input
+                                  className="input_field"
+                                  placeholder={form.placeholder}
+                                  type="text"
+                                  value={form.value}
+                                  onChange={(e): void => {
+                                    handleChangeinput(e, i, form.label);
+                                  }}
+                                />
+                              </div>
+                            </>
+                          )}
+                        </>
+                      ))}
                     <button
                       disabled={!code || submitLoading}
                       className="verify_btn"
