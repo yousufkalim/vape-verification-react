@@ -13,6 +13,13 @@ import InValidImage from '../../assets/home/invalid.svg';
 import UsedBg from '../../assets/home/used_bg.svg';
 import UsedImage from '../../assets/home/used.svg';
 import Loading from '../../assets/loader.gif';
+import Facebook from '../../assets/Facebook.svg';
+import Twitter from '../../assets/Twitter.svg';
+import YouTube from '../../assets/YouTube.svg';
+import Instagram from '../../assets/Instagram.svg';
+import LinkedIn from '../../assets/LinkedIn.svg';
+import Reddit from '../../assets/Reddit.svg';
+import Telegram from '../../assets/Telegram.svg';
 import './Home.css';
 import { toast } from 'react-toastify';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -44,6 +51,12 @@ interface customizeButton {
   border?: string;
   color?: string;
 }
+interface background {
+  img?: string;
+  selectedImg: string;
+  type: string;
+  color?: string;
+}
 interface IBrand {
   id: string;
   name: string;
@@ -54,6 +67,7 @@ interface IBrand {
     secondaryColor?: string;
   };
   textTypography?: any;
+  background: background;
   logoWidth?: string;
   websiteLink?: string;
   url?: string;
@@ -80,6 +94,12 @@ const Home: FC = () => {
     logo: '',
     preferences: { color: '', logo: '' },
     textTypography: null,
+    background: {
+      img: '',
+      selectedImg: '',
+      type: '',
+      color: '',
+    },
     url: '',
     favIcon: '',
     socialMedia: [],
@@ -123,8 +143,8 @@ const Home: FC = () => {
       api<IResponse>('get', `/users/brand/${brandURL}`)
         .then((res) => {
           // console.log('res braand', res.brand);
-          setBrand(res.brand);
           setLoading(false);
+          setBrand(res.brand);
         })
         .catch(() => {
           navigate('/');
@@ -219,6 +239,38 @@ const Home: FC = () => {
 
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
+  const socialIcon = (icon: string): string => {
+    if (icon === 'telegram') {
+      return Telegram;
+    } else if (icon === 'linkedIn') {
+      return LinkedIn;
+    } else if (icon === 'twitter') {
+      return Twitter;
+    } else if (icon === 'facebook') {
+      return Facebook;
+    } else if (icon === 'reddit') {
+      return Reddit;
+    } else if (icon === 'instagram') {
+      return Instagram;
+    } else {
+      return YouTube;
+    }
+  };
+  useEffect((): void => {
+    const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
+    if (brand.favIcon) {
+      console.log('favicon', favicon);
+      const favIs = `${mediaUrl}/${brand?.favIcon}`;
+      console.log('favIs', favIs);
+      // favicon.href = favIs;
+    }
+  }, []);
+  // eslint-disable-next-line
+  const Selectedimg = brand?.background?.selectedImg
+    ? `${mediaUrl}/${brand?.background?.selectedImg}`
+    : '';
+  const uploadedImg = brand?.background?.img ? `${mediaUrl}/${brand?.background?.img}` : '';
+
   if (loading) {
     return (
       <div className="home_loading">
@@ -228,15 +280,35 @@ const Home: FC = () => {
   } else {
     return (
       <div
-        className="mainDiv1"
+        className={`mainDiv1`}
         style={{
-          // background: `url(${logo})`,
-          backgroundColor: brand?.preferences?.color,
+          backgroundColor: brand?.background?.type === 'color' ? brand?.background.color : ``,
         }}
       >
+        {brand?.background?.type === 'Selected' ? (
+          <img src={Selectedimg} alt="Background Image" className="backgroundImg" />
+        ) : (
+          <img
+            src={Selectedimg}
+            className="backgroundImg"
+            alt="Background Image"
+            style={{ display: 'none' }}
+          />
+        )}
+        {brand?.background?.type === 'img' ? (
+          <img src={uploadedImg} alt="Background Image" className="backgroundImg" />
+        ) : (
+          <img
+            src={uploadedImg}
+            className="backgroundImg"
+            alt="Background Image"
+            style={{ display: 'none' }}
+          />
+        )}
+
         <div className="home_wrapper">
           <div className="home_logo">
-            {brand?.preferences?.logo && (
+            {brand?.logo && (
               <>
                 <a
                   href={brand?.websiteLink ? brand?.websiteLink : ''}
@@ -302,7 +374,35 @@ const Home: FC = () => {
                         onChange={handleChange}
                       />
                     </div>
-                    <button disabled={!code || submitLoading} className="verify_btn">
+                    <button
+                      disabled={!code || submitLoading}
+                      className="verify_btn"
+                      style={{
+                        background:
+                          brand?.customizeButton?.btnType === 'outline'
+                            ? 'transparent'
+                            : brand?.customizeButton?.bgColor
+                            ? brand?.customizeButton?.bgColor
+                            : '#236fda',
+                        color: brand?.customizeButton?.btnType === 'outline' ? 'black' : '',
+                        fontFamily: brand?.customizeButton?.fontName
+                          ? brand?.customizeButton?.fontName
+                          : 'Poppins',
+                        fontWeight: brand?.customizeButton?.fontWeight
+                          ? brand?.customizeButton?.fontWeight
+                          : 500,
+                        fontSize: brand?.customizeButton?.fontSize
+                          ? brand?.customizeButton?.fontSize
+                          : '1.8rem',
+                        borderRadius: brand?.customizeButton?.radius
+                          ? brand?.customizeButton?.radius
+                          : '1rem',
+                        border:
+                          brand?.customizeButton?.btnType === 'outline'
+                            ? `1px solid ${brand?.customizeButton?.bgColor}`
+                            : '',
+                      }}
+                    >
                       {codeStatus ? 'Verify another code' : 'Verify'}
                     </button>
                   </form>
@@ -316,10 +416,11 @@ const Home: FC = () => {
         </div>
         <div
           className="bottomDiv"
-          style={{
-            // background: `url(${logo})`,
-            background: brand?.preferences?.secondaryColor,
-          }}
+          style={
+            {
+              // background: brand?.preferences?.secondaryColor,
+            }
+          }
         >
           {/* <div className="responsePopup"> */}
           <div
@@ -375,6 +476,16 @@ const Home: FC = () => {
                 </div>
               </>
             )}
+          </div>
+          <div className="socialIconDiv">
+            {brand?.socialMedia?.length !== 0 &&
+              brand?.socialMedia?.map((social: any) => (
+                <>
+                  <a href={social.link} target="_blank" rel="noreferrer">
+                    <img src={socialIcon(social?.platform)} className="socialIcon" />
+                  </a>
+                </>
+              ))}
           </div>
           <div className="home_footer">
             © 2023{' '}
