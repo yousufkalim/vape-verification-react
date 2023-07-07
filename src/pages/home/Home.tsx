@@ -34,17 +34,34 @@ interface IBody {
 interface IResponse {
   brand: IBrand;
 }
-
+interface customizeButton {
+  btnType: string;
+  radius?: string;
+  fontName?: string;
+  fontWeight?: string;
+  fontSize?: string;
+  bgColor: string;
+  border?: string;
+  color?: string;
+}
 interface IBrand {
-  name: string;
   id: string;
-  logoWidth?: string;
-  websiteLink?: string;
-  preferences: {
-    color?: string;
+  name: string;
+  logo?: string;
+  preferences?: {
     logo?: string;
+    color?: string;
     secondaryColor?: string;
   };
+  textTypography?: any;
+  logoWidth?: string;
+  websiteLink?: string;
+  url?: string;
+  favIcon?: string;
+  favIcons?: [];
+  socialMedia?: [];
+  customizeButton?: customizeButton;
+  description?: string;
 }
 
 // const status = 'valid';
@@ -60,16 +77,25 @@ const Home: FC = () => {
     id: '',
     logoWidth: '',
     websiteLink: '',
+    logo: '',
     preferences: { color: '', logo: '' },
+    textTypography: null,
+    url: '',
+    favIcon: '',
+    socialMedia: [],
+    customizeButton: {
+      btnType: '',
+      radius: '',
+      bgColor: '',
+    },
+    description: '',
   });
 
-  console.log('codeStatus', codeStatus);
+  // console.log('codeStatus', codeStatus);
   console.log('statusBg', statusBg);
 
   const [loading, setLoading] = useState<boolean>(true);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
-
-  console.log('brand', brand);
 
   const navigate = useNavigate();
 
@@ -96,6 +122,7 @@ const Home: FC = () => {
       setLoading(true);
       api<IResponse>('get', `/users/brand/${brandURL}`)
         .then((res) => {
+          // console.log('res braand', res.brand);
           setBrand(res.brand);
           setLoading(false);
         })
@@ -188,8 +215,9 @@ const Home: FC = () => {
       toast.error('ERRO');
     }
   };
+  console.log('brandIs', brand);
 
-  const logo = brand?.preferences?.logo ? `${mediaUrl}/${brand.preferences?.logo}` : '';
+  const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
   if (loading) {
     return (
@@ -203,7 +231,7 @@ const Home: FC = () => {
         className="mainDiv1"
         style={{
           // background: `url(${logo})`,
-          backgroundColor: brand?.preferences.color,
+          backgroundColor: brand?.preferences?.color,
         }}
       >
         <div className="home_wrapper">
@@ -236,10 +264,18 @@ const Home: FC = () => {
                 <div className="home_left">
                   <div
                     className="heading_main"
-                    // style={{
-                    //   // background: `url(${logo})`,
-                    //   color: brand?.preferences.secondaryColor,
-                    // }}
+                    style={{
+                      fontSize: brand?.textTypography?.Heading?.fontSize
+                        ? brand?.textTypography?.Heading?.fontSize
+                        : '2.4rem',
+                      fontFamily: brand?.textTypography?.Heading?.fontName
+                        ? brand?.textTypography?.Heading?.fontName
+                        : 'Poppins',
+                      fontWeight: brand?.textTypography?.Heading?.fontWeight
+                        ? brand?.textTypography?.Heading?.fontWeight
+                        : 600,
+                      // color: brand?.preferences.secondaryColor,
+                    }}
                   >
                     Verify your product
                     <a
@@ -282,7 +318,7 @@ const Home: FC = () => {
           className="bottomDiv"
           style={{
             // background: `url(${logo})`,
-            background: brand?.preferences.secondaryColor,
+            background: brand?.preferences?.secondaryColor,
           }}
         >
           {/* <div className="responsePopup"> */}
