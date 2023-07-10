@@ -168,7 +168,7 @@ const Home: FC = () => {
   }, []);
   useEffect(() => {
     if (brandcode && brand.id) {
-      verifyBrandCode(brandcode);
+      verifyBrandCode(brandcode, 'nfc');
     }
   }, [brand]);
 
@@ -193,9 +193,9 @@ const Home: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    verifyBrandCode(code);
+    verifyBrandCode(code, 'regular');
   };
-  const verifyBrandCode = (bCode: string): void => {
+  const verifyBrandCode = (bCode: string, codeType: string): void => {
     const allFields = feedbackForms?.map((item: any) => ({
       name: item.label,
       value: item.value,
@@ -203,11 +203,11 @@ const Home: FC = () => {
     const body = {
       codeId: bCode,
       brandId: brand.id,
+      code_type: codeType,
       feedbacks: allFields,
     };
     if (bCode !== '') {
       setSubmitLoading(true);
-      console.log('All field ', allFields);
       api<IBody>('post', '/codes/validate', body)
         .then((res) => {
           if (res.status === 'valid') {
@@ -268,8 +268,6 @@ const Home: FC = () => {
       toast.error('ERRO');
     }
   };
-  console.log('brandIs', brand);
-  console.log('feedbackForm', feedbackForms);
 
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
@@ -318,7 +316,6 @@ const Home: FC = () => {
 
     // setFeedbackForms(updatedForm);
   };
-  console.log('feedbackForms', feedbackForms);
 
   if (loading) {
     return (
