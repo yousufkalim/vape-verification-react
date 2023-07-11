@@ -1,7 +1,8 @@
 import React, { FC, FormEvent, useLayoutEffect, useState, useEffect } from 'react';
-import api from '../../api/request';
 import moment from 'moment';
+import { Zoom, Fade } from 'react-reveal';
 
+import api from '../../api/request';
 /*    Assets    */
 // import HomeLogo from '../../assets/home/logo.svg';
 import ValidBg from '../../assets/home/valid_bg.svg';
@@ -77,6 +78,7 @@ interface IBrand {
   socialMedia?: [];
   customizeButton?: customizeButton;
   description?: string;
+  pageAnimation?: string;
 }
 interface IfeedbackForm {
   _id: string;
@@ -149,6 +151,8 @@ const Home: FC = () => {
   // }, []);
   const params = useParams();
   const { brandURL, brandcode } = params;
+
+  console.log('BRANDDd ', brand);
 
   useLayoutEffect(() => {
     if (brandURL) {
@@ -316,6 +320,32 @@ const Home: FC = () => {
 
     // setFeedbackForms(updatedForm);
   };
+
+  console.log('Loading ', submitLoading);
+
+  // const Anim: FC<any> = (props) => {
+  //   if (brand.pageAnimation === 'moveIn') {
+  //     return (
+  //       <Fade show={submitLoading} left style={{ width: '100%' }}>
+  //         {props.children}
+  //       </Fade>
+  //     );
+  //   } else if (brand.pageAnimation === 'zoomIn') {
+  //     return (
+  //       <Zoom show={submitLoading} style={{ width: '100%' }}>
+  //         {props.children}
+  //       </Zoom>
+  //     );
+  //   } else if (brand.pageAnimation === 'bottom') {
+  //     return (
+  //       <Fade show={submitLoading} bottom style={{ width: '100%' }}>
+  //         {props.children}
+  //       </Fade>
+  //     );
+  //   } else {
+  //     return <>{props.children}</>;
+  //   }
+  // };
 
   if (loading) {
     return (
@@ -490,16 +520,15 @@ const Home: FC = () => {
             }
           }
         >
-          {/* <div className="responsePopup"> */}
-          <div
-            className={`${
-              codeStatus === 'This code has already been scanned on'
-                ? 'responsePopup'
-                : 'invalidresponsePopup'
-            }`}
-          >
-            {codeStatus && (
-              <>
+          {codeStatus && brand.pageAnimation === 'moveIn' ? (
+            <Fade show={submitLoading} spy={codeStatus} left style={{ width: '100%' }}>
+              <div
+                className={`${
+                  codeStatus === 'This code has already been scanned on'
+                    ? 'responsePopup'
+                    : 'invalidresponsePopup'
+                }`}
+              >
                 <div className="home_status">
                   <div>
                     <span>
@@ -542,9 +571,168 @@ const Home: FC = () => {
                     <span className="moreInfospan"> More information</span>
                   </a>
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+            </Fade>
+          ) : codeStatus && brand.pageAnimation === 'zoomIn' ? (
+            <Zoom show={codeStatus} left style={{ width: '100%' }}>
+              <div
+                className={`${
+                  codeStatus === 'This code has already been scanned on'
+                    ? 'responsePopup'
+                    : 'invalidresponsePopup'
+                }`}
+              >
+                <div className="home_status">
+                  <div>
+                    <span>
+                      <img src={statusImage} alt="statusImage" />
+                    </span>{' '}
+                  </div>
+                  <div
+                    className={`${
+                      codeStatus === 'This code has already been scanned on'
+                        ? 'statusScanned'
+                        : 'status'
+                    }`}
+                  >
+                    {codeStatus}
+                    <div className="ScanedDate">
+                      {codeStatus === 'This code has already been scanned on' && (
+                        <div>
+                          <span>{timestate}</span>
+                          <span className="dateLine"></span>
+                          <span>{alreadyScanDate}</span>
+                        </div>
+                      )}
+                    </div>
+                    {/* {alreadyScanDate && alreadyScanDate} */}
+                    {codeStatus === 'This code is invalid.' && (
+                      <div className="invalidcodeText">
+                        Do not use product until verifying authenticity
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="morinfoDiv">
+                  <img src={Question} alt="Question" />
+                  <a
+                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span className="moreInfospan"> More information</span>
+                  </a>
+                </div>
+              </div>
+            </Zoom>
+          ) : codeStatus && brand.pageAnimation === 'bottom' ? (
+            <Zoom left style={{ width: '100%' }}>
+              <div
+                className={`${
+                  codeStatus === 'This code has already been scanned on'
+                    ? 'responsePopup'
+                    : 'invalidresponsePopup'
+                }`}
+              >
+                <div className="home_status">
+                  <div>
+                    <span>
+                      <img src={statusImage} alt="statusImage" />
+                    </span>{' '}
+                  </div>
+                  <div
+                    className={`${
+                      codeStatus === 'This code has already been scanned on'
+                        ? 'statusScanned'
+                        : 'status'
+                    }`}
+                  >
+                    {codeStatus}
+                    <div className="ScanedDate">
+                      {codeStatus === 'This code has already been scanned on' && (
+                        <div>
+                          <span>{timestate}</span>
+                          <span className="dateLine"></span>
+                          <span>{alreadyScanDate}</span>
+                        </div>
+                      )}
+                    </div>
+                    {/* {alreadyScanDate && alreadyScanDate} */}
+                    {codeStatus === 'This code is invalid.' && (
+                      <div className="invalidcodeText">
+                        Do not use product until verifying authenticity
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="morinfoDiv">
+                  <img src={Question} alt="Question" />
+                  <a
+                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span className="moreInfospan"> More information</span>
+                  </a>
+                </div>
+              </div>
+            </Zoom>
+          ) : (
+            <div
+              className={`${
+                codeStatus === 'This code has already been scanned on'
+                  ? 'responsePopup'
+                  : 'invalidresponsePopup'
+              }`}
+            >
+              <div className="home_status">
+                <div>
+                  <span>
+                    <img src={statusImage} alt="statusImage" />
+                  </span>{' '}
+                </div>
+                <div
+                  className={`${
+                    codeStatus === 'This code has already been scanned on'
+                      ? 'statusScanned'
+                      : 'status'
+                  }`}
+                >
+                  {codeStatus}
+                  <div className="ScanedDate">
+                    {codeStatus === 'This code has already been scanned on' && (
+                      <div>
+                        <span>{timestate}</span>
+                        <span className="dateLine"></span>
+                        <span>{alreadyScanDate}</span>
+                      </div>
+                    )}
+                  </div>
+                  {/* {alreadyScanDate && alreadyScanDate} */}
+                  {codeStatus === 'This code is invalid.' && (
+                    <div className="invalidcodeText">
+                      Do not use product until verifying authenticity
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="morinfoDiv">
+                <img src={Question} alt="Question" />
+                <a
+                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span className="moreInfospan"> More information</span>
+                </a>
+              </div>
+            </div>
+          )}
+
+          {/* <div className="responsePopup"> */}
           <div className="socialIconDiv">
             {brand?.socialMedia?.length !== 0 &&
               brand?.socialMedia?.map((social: any) => (
