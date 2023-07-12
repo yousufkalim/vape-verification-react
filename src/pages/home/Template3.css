@@ -1,0 +1,25 @@
+.home_content_two {
+  border-radius: 0rem !important;
+}
+.input_field_two {
+  border-radius: 0rem;
+}
+.verify_btn_two {
+  border-radius: 0px;
+}
+.main_heading_two {
+  text-align: center;
+}
+.invalidresponsePopup_two {
+  border-radius: 0px;
+  margin-left: 1%;
+}
+
+.logoFixed {
+  z-index: 0;
+  right: 1.2%;
+  opacity: 16%;
+}
+.input_field_3 {
+  border-radius: 0rem;
+}
