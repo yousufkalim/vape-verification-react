@@ -125,11 +125,10 @@
 
 .heading_main {
   /* font-weight: 600; */
-  /* font-size: 2.4rem; */
-  color: #236fda;
+  font-size: 32px !important;
   line-height: 2rem;
   padding-bottom: 2rem;
-  text-align: center;
+  /* text-align: center; */
 }
 /* .react-reveal {
   width: 50%;
@@ -139,12 +138,15 @@
   background: white;
   border-radius: 20px;
   margin-bottom: 70px;
+  z-index: 1;
 }
 .invalidresponsePopup {
-  width: 39%;
+  width: 32%;
   background: white;
   border-radius: 20px;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  margin-left: 10%;
+  z-index: 1;
 }
 
 /*    LEFT SIDE   */
@@ -158,8 +160,8 @@
   color: #919b9b;
 }
 .input_field {
-  border: 2px solid #454238;
-  border-radius: 1rem;
+  border: 2px solid #e1e1e1;
+  border-radius: 6rem;
   padding: 1rem 2rem;
   font-size: 1.6rem;
   color: 454238;
@@ -226,7 +228,7 @@
   justify-content: left;
   align-items: center;
   padding: 20px 0px 10px 0px;
-  margin-left: 10%;
+  margin-left: 7%;
 }
 .home_status_content {
   display: flex;
@@ -237,17 +239,17 @@
   padding-block: 5%;
 }
 .statusScanned {
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 600;
   color: #454238;
   padding: 0px 0px 0px 30px;
 }
 
 .status {
-  font-size: 32px;
+  font-size: 22px;
   font-weight: 600;
   color: #454238;
-  padding: 0px 0px 0px 30px;
+  padding: 0px 0px 0px 15px;
 }
 .status span {
   margin-right: 2rem;
@@ -281,26 +283,32 @@
   color: #ff5d39;
   font-family: 'Poppins';
   font-weight: 600;
-  font-size: 14px;
-  margin-left: 10px;
+  font-size: 13px;
+  /* margin-left: 10px; */
+  padding-top: 2%;
 }
 .morinfoDiv {
   display: flex;
   align-items: center;
   justify-content: end;
   position: relative;
-  top: -32px;
-  margin-right: 10px;
   cursor: pointer;
+  width: -moz-fit-content;
   width: fit-content;
-  margin-left: auto;
+  margin: 2% 0% 0% 16%;
+  width: 98%;
+  gap: 2%;
 }
 .moreInfospan {
   font-size: 13px;
-  padding: 0px 5px;
+  padding: 8px 0px 0px 0px;
   font-weight: 600;
   color: #1aabe9;
   text-decoration: underline;
+  display: flex;
+  width: 54%;
+  align-items: center;
+  padding-bottom: 3%;
 }
 .ScanedDate {
   color: #ff8c39;
@@ -321,6 +329,14 @@
   position: fixed;
   z-index: -1;
 }
+.Scaned_date_main_div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  white-space: pre;
+  align-items: center;
+}
+
 @media screen and (max-width: 700px) {
   .home {
     padding: 20px 5%;
@@ -422,3 +438,4 @@
     font-size: 18px;
   }
 }
+/* 3rd template css */
