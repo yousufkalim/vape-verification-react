@@ -7,13 +7,6 @@
   opacity: 20%;
 }
 
-/* .verify_button_three {
-    padding: 1% 6% 1% 6%;
-    text-align: right;
-    margin-left: 78%;
-    margin-top: 1%;
-    border-radius: 50px;
-} */
 .verify_button_three {
   padding: 3% 4% 3% 4%;
   margin-left: 65%;
@@ -27,4 +20,11 @@
 }
 .input_field_2 {
   border: 2px solid #454238;
+}
+@media screen and (max-width: 700px) {
+  .verify_button_three {
+    margin-left: 55%;
+    width: 44%;
+    font-size: 11px !important;
+  }
 }

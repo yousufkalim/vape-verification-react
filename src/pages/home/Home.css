@@ -137,7 +137,7 @@
   width: 50%;
   background: white;
   border-radius: 20px;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   z-index: 1;
 }
 .invalidresponsePopup {
@@ -334,10 +334,27 @@
   justify-content: space-between;
   width: 100%;
   white-space: pre;
+  /* flex-wrap: wrap; */
   align-items: center;
 }
 
+@media screen and (min-width: 701px) and (max-width: 1200px) {
+  .Scaned_date_main_div {
+    flex-wrap: wrap;
+  }
+  .responsePopup {
+    margin-bottom: 30px;
+  }
+  /* .morinfoDiv{
+    margin: 2% 0% 0% 52%;
+    flex-wrap: nowrap;
+  } */
+}
+
 @media screen and (max-width: 700px) {
+  .Scaned_date_main_div {
+    flex-wrap: wrap;
+  }
   .home {
     padding: 20px 5%;
     overflow-x: hidden;
@@ -380,7 +397,7 @@
     font-size: 3rem;
   }
   .status img {
-    width: 4rem;
+    width: 2rem;
   }
   .step_label {
     font-size: 1.6rem;
@@ -412,30 +429,46 @@
   }
   .invalidresponsePopup {
     width: 90%;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
+    margin-left: 0%;
   }
 
   .morinfoDiv {
     display: flex;
     align-items: center;
-    justify-content: end;
     position: relative;
-    top: -10px;
-    margin-right: 10px;
   }
   .home_status {
     padding: 20px 0px 10px 0px;
     margin-left: 3%;
   }
   .status {
-    font-size: 25px;
+    font-size: 20px;
     padding: 0px 0px 0px 10px;
   }
   .statusScanned {
-    font-size: 16px;
+    font-size: 13px;
+    padding-left: 9px;
   }
   .ScanedDate {
-    font-size: 18px;
+    font-size: 12px;
+  }
+  .questionimg1 {
+    margin-left: 100%;
+  }
+  .invalidcodeText {
+    font-size: 11px;
+  }
+  .scaned_img {
+    width: 10% !important;
+  }
+  .dateLine {
+    margin-inline: 4px;
+  }
+  .already_scaned {
+    margin-left: 5%;
+  }
+  .bottomDiv {
+    height: 40%;
   }
 }
-/* 3rd template css */
