@@ -91,7 +91,7 @@ interface IfeedbackForm {
 }
 
 // const status = 'valid';
-const Home: FC = () => {
+const Template2: FC = () => {
   const [code, setCode] = useState<string>('');
   const [codeStatus, setCodeStatus] = useState<string>('');
   const [alreadyScanDate, setAlreadyScaneDate] = useState<string>('');
@@ -832,4 +832,4 @@ const Home: FC = () => {
   }
 };
 
-export default Home;
+export default Template2;
