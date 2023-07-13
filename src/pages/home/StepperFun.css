@@ -14,6 +14,12 @@
   border-top-width: 8px !important;
   margin-right: -4% !important;
 }
-/* .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root{
-    width: 100% !important;
-} */
+
+@media screen and (max-width: 700px) {
+  .css-1bw0nnu-MuiStep-root {
+    width: 15.8% !important;
+  }
+  .css-z7uhs0-MuiStepConnector-line {
+    margin-right: -10% !important;
+  }
+}

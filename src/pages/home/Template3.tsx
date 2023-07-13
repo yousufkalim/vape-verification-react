@@ -524,9 +524,11 @@ const Template3: FC = () => {
                         <div className="ScanedDate">
                           {codeStatus === 'This code has already been scanned on' && (
                             <div className="Scaned_date_main_div">
-                              <span>{timestate}</span>
-                              <span className="dateLine"></span>
-                              <span>{alreadyScanDate}</span>
+                              <div style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
+                                <span>{timestate}</span>
+                                <span className="dateLine"></span>
+                                <span>{alreadyScanDate}</span>
+                              </div>
                               <div className="morinfoDiv">
                                 <img src={Question} alt="Question" />
                                 <a

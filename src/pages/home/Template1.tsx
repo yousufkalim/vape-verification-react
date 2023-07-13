@@ -547,9 +547,11 @@ const Template1: FC = () => {
                         <div className="ScanedDate">
                           {codeStatus === 'This code has already been scanned on' && (
                             <div className="Scaned_date_main_div">
-                              <span>{timestate}</span>
-                              <span className="dateLine"></span>
-                              <span>{alreadyScanDate}</span>
+                              <div style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
+                                <span>{timestate}</span>
+                                <span className="dateLine"></span>
+                                <span>{alreadyScanDate}</span>
+                              </div>
                               <div className="morinfoDiv">
                                 <img src={Question} alt="Question" />
                                 <a
@@ -783,14 +785,14 @@ const Template1: FC = () => {
                             <span>{timestate}</span>
                             <span className="dateLine"></span>
                             <span>{alreadyScanDate}</span>
-                            <div className="morinfoDiv">
+                            <div className="morinfoDiv already_scaned">
                               <img src={Question} alt="Question" />
                               <a
                                 href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
                                 rel="noreferrer"
                                 target="_blank"
                               ></a>
-                              <div className="moreInfospan"> More information</div>
+                              <div className="moreInfospan "> More information</div>
                             </div>
                           </div>
                         )}
