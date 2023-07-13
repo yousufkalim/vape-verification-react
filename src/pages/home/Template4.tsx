@@ -89,6 +89,7 @@ interface IfeedbackForm {
   filedPlaceholder: string;
   filedRequired: boolean;
   filedActive: boolean;
+  isActive: boolean;
 }
 const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -488,6 +489,7 @@ const Template4: FC = () => {
                                   onChange={(e): void => {
                                     handleChangeinput(e, i, form.label);
                                   }}
+                                  required={form.isRequired}
                                 />
                               </div>
                             </>
