@@ -146,6 +146,7 @@ const Template2: FC = () => {
 
   const [loading, setLoading] = useState<boolean>(true);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+  const [submittedCode, setSubmittedCode] = useState<string>('');
   // eslint-disable-next-line
 
   const navigate = useNavigate();
@@ -239,7 +240,7 @@ const Template2: FC = () => {
             return { ...feedbackForm, value: '' };
           });
           setFeedbackForms(feedbackIs);
-
+          setSubmittedCode(code);
           setCode('');
           setSubmitLoading(false);
         })
@@ -279,6 +280,7 @@ const Template2: FC = () => {
             setStatusBg(InValidBg);
             setStatusImage(InValidImage);
           }
+          setSubmittedCode(code);
           setCode('');
           setSubmitLoading(false);
         });
@@ -542,8 +544,8 @@ const Template2: FC = () => {
           }
         >
           {/* <div className="responsePopup"> */}
-          {codeStatus && brand.pageAnimation === 'moveIn' ? (
-            <Fade show={submitLoading} spy={codeStatus} left style={{ width: '100%' }}>
+          {brand.pageAnimation === 'moveIn' ? (
+            <Fade spy={submittedCode} left style={{ width: '100%' }}>
               <div
                 className={`${
                   codeStatus === 'This code has already been scanned on'
@@ -622,8 +624,8 @@ const Template2: FC = () => {
                 )}
               </div>
             </Fade>
-          ) : codeStatus && brand.pageAnimation === 'zoomIn' ? (
-            <Zoom show={codeStatus} style={{ width: '100%' }}>
+          ) : brand.pageAnimation === 'zoomIn' ? (
+            <Zoom spy={submittedCode} style={{ width: '100%' }}>
               <div
                 className={`${
                   codeStatus === 'This code has already been scanned on'
@@ -700,8 +702,8 @@ const Template2: FC = () => {
                 )}
               </div>
             </Zoom>
-          ) : codeStatus && brand.pageAnimation === 'bottom' ? (
-            <Zoom bottom style={{ width: '100%' }}>
+          ) : brand.pageAnimation === 'bottom' ? (
+            <Zoom bottom spy={submittedCode} style={{ width: '100%' }}>
               <div
                 className={`${
                   codeStatus === 'This code has already been scanned on'
