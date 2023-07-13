@@ -18,12 +18,19 @@
   border-top-width: 8px !important;
   margin-right: -4% !important;
 }
+.css-95m0ql {
+  border-top-width: 8px !important;
+  margin-right: -4% !important;
+}
 
 @media screen and (max-width: 700px) {
   .css-1bw0nnu-MuiStep-root {
     width: 15.8% !important;
   }
   .css-z7uhs0-MuiStepConnector-line {
+    margin-right: -10% !important;
+  }
+  .css-95m0ql {
     margin-right: -10% !important;
   }
 }
