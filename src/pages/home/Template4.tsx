@@ -431,7 +431,23 @@ const Template4: FC = () => {
                     }}
                     className="code_field"
                   >
-                    <div className="field_label">Enter Your Code</div>
+                    <div
+                      // className="field_label"
+                      style={{
+                        fontSize: brand?.textTypography?.Paragraph?.fontSize
+                          ? brand?.textTypography?.Paragraph?.fontSize
+                          : '1.4rem',
+                        fontFamily: brand?.textTypography?.Paragraph?.fontName
+                          ? brand?.textTypography?.Paragraph?.fontName
+                          : 'Poppins',
+                        fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                          ? brand?.textTypography?.Paragraph?.fontWeight
+                          : '100',
+                        // color: brand?.preferences.secondaryColor,
+                      }}
+                    >
+                      Enter Your Code
+                    </div>
                     <div>
                       <input
                         className="input_field"
@@ -447,7 +463,22 @@ const Template4: FC = () => {
                           {form.isActive && (
                             <>
                               {' '}
-                              <div className="field_label">{form.label}</div>
+                              <div
+                                style={{
+                                  fontSize: brand?.textTypography?.Paragraph?.fontSize
+                                    ? brand?.textTypography?.Paragraph?.fontSize
+                                    : '1.4rem',
+                                  fontFamily: brand?.textTypography?.Paragraph?.fontName
+                                    ? brand?.textTypography?.Paragraph?.fontName
+                                    : 'Poppins',
+                                  fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                                    ? brand?.textTypography?.Paragraph?.fontWeight
+                                    : '100',
+                                  // color: brand?.preferences.secondaryColor,
+                                }}
+                              >
+                                {form.label}
+                              </div>
                               <div>
                                 <input
                                   className="input_field"
