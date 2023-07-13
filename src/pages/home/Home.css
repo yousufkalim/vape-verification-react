@@ -47,7 +47,7 @@
 }
 .bottomDiv {
   /* background: rgb(3, 40, 56); */
-  height: 48%;
+  height: 35%;
   /* clip-path: polygon(100% 0%, 0% 18%, 0% 100%, 100% 100%); */
   display: flex;
   flex-direction: column;
@@ -134,7 +134,7 @@
   width: 50%;
 } */
 .responsePopup {
-  width: 50%;
+  width: 43%;
   background: white;
   border-radius: 20px;
   margin-bottom: 40px;
@@ -227,7 +227,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 20px 0px 10px 0px;
+  padding: 25px 0px 15px 0px;
   margin-left: 7%;
 }
 .home_status_content {
@@ -337,7 +337,11 @@
   /* flex-wrap: wrap; */
   align-items: center;
 }
-
+@media screen and (min-width: 1201px) and (max-width: 1600px) {
+  .bottomDiv {
+    height: 41%;
+  }
+}
 @media screen and (min-width: 701px) and (max-width: 1200px) {
   .Scaned_date_main_div {
     flex-wrap: wrap;
