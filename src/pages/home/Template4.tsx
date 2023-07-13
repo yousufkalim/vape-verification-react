@@ -90,7 +90,7 @@ interface IfeedbackForm {
 }
 
 // const status = 'valid';
-const Home: FC = () => {
+const Template4: FC = () => {
   const [code, setCode] = useState<string>('');
   const [codeStatus, setCodeStatus] = useState<string>('');
   const [alreadyScanDate, setAlreadyScaneDate] = useState<string>('');
@@ -271,6 +271,7 @@ const Home: FC = () => {
     }
   };
 
+  console.log('BRAND ==> ', brand);
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
   const socialIcon = (icon: string): string => {
@@ -575,7 +576,7 @@ const Home: FC = () => {
               </div>
             </Fade>
           ) : codeStatus && brand.pageAnimation === 'zoomIn' ? (
-            <Zoom show={codeStatus} left style={{ width: '100%' }}>
+            <Zoom show={codeStatus} style={{ width: '100%' }}>
               <div
                 className={`${
                   codeStatus === 'This code has already been scanned on'
@@ -652,7 +653,7 @@ const Home: FC = () => {
               </div>
             </Zoom>
           ) : codeStatus && brand.pageAnimation === 'bottom' ? (
-            <Zoom left style={{ width: '100%' }}>
+            <Zoom bottom style={{ width: '100%' }}>
               <div
                 className={`${
                   codeStatus === 'This code has already been scanned on'
@@ -736,7 +737,7 @@ const Home: FC = () => {
                   : 'invalidresponsePopup'
               }`}
             >
-              <>
+              {codeStatus && (
                 <div className="home_status">
                   <div>
                     <span>
@@ -801,7 +802,7 @@ const Home: FC = () => {
                     )}
                   </div>
                 </div>
-              </>
+              )}
             </div>
           )}
           <div className="socialIconDiv">
@@ -830,4 +831,4 @@ const Home: FC = () => {
   }
 };
 
-export default Home;
+export default Template4;
