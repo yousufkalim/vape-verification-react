@@ -306,13 +306,13 @@ const Template4: FC = () => {
   };
   useEffect((): void => {
     const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-    if (brand.favIcon) {
-      console.log('favicon', favicon);
+
+    if (brand?.favIcon) {
       const favIs = `${mediaUrl}/${brand?.favIcon}`;
-      console.log('favIs', favIs);
+      console.log('favIs for uodatetion', favIs);
       favicon.href = favIs;
     }
-  }, []);
+  }, [brand]);
 
   // eslint-disable-next-line
   {
