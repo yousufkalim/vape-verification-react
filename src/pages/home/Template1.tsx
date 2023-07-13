@@ -508,6 +508,7 @@ const Template1: FC = () => {
                                   onChange={(e): void => {
                                     handleChangeinput(e, i, form.label);
                                   }}
+                                  required={form.isRequired}
                                 />
                               </div>
                             </>
