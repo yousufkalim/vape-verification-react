@@ -19,7 +19,7 @@ const Home: FC = () => {
   const params = useParams();
   const { brandURL } = params;
   // eslint-disable-next-line
-  const [template, setTemplate] = useState<string>('3');
+  const [template, setTemplate] = useState<string>('1');
   // eslint-disable-next-line
   const [loading, setLoading] = useState<boolean>(true);
   useLayoutEffect(() => {
@@ -29,7 +29,7 @@ const Home: FC = () => {
         .then((res) => {
           console.log('res layout', res.layout);
           setLoading(false);
-          // setTemplate(res?.layout);
+          setTemplate(res?.layout);
         })
         .catch(() => {
           setLoading(false);
