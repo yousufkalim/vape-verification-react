@@ -89,6 +89,7 @@ interface IfeedbackForm {
   filedPlaceholder: string;
   filedRequired: boolean;
   filedActive: boolean;
+  isActive: boolean;
 }
 
 // const status = 'valid';
@@ -134,6 +135,8 @@ const Template1: FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   // eslint-disable-next-line
+  const [activeStep, setActiveStep] = useState<number>(0);
+  // eslint-disable-next-line
 
   const navigate = useNavigate();
 
@@ -159,11 +162,12 @@ const Template1: FC = () => {
     if (brandURL) {
       setLoading(true);
       api<IResponse>('get', `/users/brand/${brandURL}`)
-        .then((res) => {
+        .then((res: any) => {
           // console.log('res braand', res.brand);
           setLoading(false);
           setBrand(res.brand);
-          setFeedbackForms(res.feedbackForm);
+          const activeFeedback = res?.feedbackForm?.filter((form: IfeedbackForm) => form.isActive);
+          setFeedbackForms(activeFeedback);
         })
         .catch(() => {
           navigate('/');
@@ -198,7 +202,15 @@ const Template1: FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    verifyBrandCode(code, 'regular');
+    console.log('aaaa');
+    if (feedbackForms?.length !== 0 && activeStep === 0) {
+      // eslint-disable-next-line
+      setActiveStep(1);
+    } else if (feedbackForms?.length !== 0 && activeStep === 2) {
+      setActiveStep(0);
+    } else {
+      verifyBrandCode(code, 'regular');
+    }
   };
   const verifyBrandCode = (bCode: string, codeType: string): void => {
     const allFields = feedbackForms?.map((item: any) => ({
@@ -268,6 +280,9 @@ const Template1: FC = () => {
           }
           setCode('');
           setSubmitLoading(false);
+          if (feedbackForms.length !== 0) {
+            setActiveStep(2);
+          }
         });
     } else {
       toast.error('ERRO');
@@ -410,7 +425,7 @@ const Template1: FC = () => {
                     </a>
                   </div>
                   {/* Stepper Here */}
-                  <Stepper />
+                  {feedbackForms?.length !== 0 && <Stepper activeStep={activeStep} />}
 
                   <form
                     onSubmit={(e) => {
@@ -418,17 +433,22 @@ const Template1: FC = () => {
                     }}
                     className="code_field"
                   >
-                    <div className="field_label">Enter Your Code</div>
-                    <div>
-                      <input
-                        className="input_field input_field_four"
-                        placeholder="A1A1-A1A1"
-                        type="text"
-                        value={code}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    {feedbackForms.length !== 0 &&
+                    {activeStep === 0 && (
+                      <>
+                        <div className="field_label">Enter Your Code</div>
+                        <div>
+                          <input
+                            className="input_field input_field_four"
+                            placeholder="A1A1-A1A1"
+                            type="text"
+                            value={code}
+                            onChange={handleChange}
+                          />
+                        </div>
+                      </>
+                    )}
+                    {activeStep === 1 &&
+                      feedbackForms.length !== 0 &&
                       feedbackForms.map((form: any, i: any) => (
                         <>
                           {form.isActive && (
@@ -451,7 +471,7 @@ const Template1: FC = () => {
                         </>
                       ))}
                     <button
-                      disabled={!code || submitLoading}
+                      disabled={(!code && activeStep !== 2) || submitLoading}
                       className="verify_btn verify_btn_two"
                       style={{
                         background:
@@ -479,7 +499,7 @@ const Template1: FC = () => {
                             : '',
                       }}
                     >
-                      {codeStatus ? 'Check Verification' : 'Verify'}
+                      {codeStatus ? (activeStep === 2 ? 'Back' : 'Check Verification') : 'Verify'}
                     </button>
                   </form>
                 </div>
