@@ -2,6 +2,8 @@ import React, { FC, FormEvent, useLayoutEffect, useState, useEffect } from 'reac
 import api from '../../api/request';
 import moment from 'moment';
 import { Zoom, Fade } from 'react-reveal';
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 /*    Assets    */
 // import HomeLogo from '../../assets/home/logo.svg';
@@ -89,6 +91,16 @@ interface IfeedbackForm {
   filedRequired: boolean;
   filedActive: boolean;
 }
+const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}));
 
 // const status = 'valid';
 const Template3: FC = () => {
@@ -298,7 +310,7 @@ const Template3: FC = () => {
       console.log('favicon', favicon);
       const favIs = `${mediaUrl}/${brand?.favIcon}`;
       console.log('favIs', favIs);
-      // favicon.href = favIs;
+      favicon.href = favIs;
     }
   }, []);
 
@@ -360,21 +372,23 @@ const Template3: FC = () => {
           <div className="home_logo">
             {brand?.logo && (
               <>
-                <a
-                  href={brand?.websiteLink ? brand?.websiteLink : ''}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="brand_logo1"
-                    style={{
-                      // width: '20%',
-                      // background: `url(${logo})`,
-                      width: `${brand?.logoWidth ? brand?.logoWidth + 'px' : '200px'}`,
-                    }}
-                    src={logo}
-                  />
-                </a>
+                <LightTooltip title={brand?.description ? brand?.description : ''}>
+                  <a
+                    href={brand?.websiteLink ? brand?.websiteLink : ''}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="brand_logo1"
+                      style={{
+                        // width: '20%',
+                        // background: `url(${logo})`,
+                        width: `${brand?.logoWidth ? brand?.logoWidth + 'px' : '200px'}`,
+                      }}
+                      src={logo}
+                    />
+                  </a>
+                </LightTooltip>
               </>
             )}
             {/* <div className="logo_title">{brand?.name}</div> */}
