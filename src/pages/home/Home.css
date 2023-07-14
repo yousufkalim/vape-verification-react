@@ -148,6 +148,13 @@
   margin-left: 10%;
   z-index: 1;
 }
+.withBrandCode {
+  width: 43%;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 14%;
+  z-index: 1;
+}
 
 /*    LEFT SIDE   */
 .home_left {
