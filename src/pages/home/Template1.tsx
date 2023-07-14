@@ -254,6 +254,9 @@ const Template1: FC = () => {
           setSubmittedCode(code);
           setCode('');
           setSubmitLoading(false);
+          if (feedbackForms.length !== 0) {
+            setActiveStep(2);
+          }
         })
         .catch((err) => {
           const { status, message, validationTime } = err.response.data;
