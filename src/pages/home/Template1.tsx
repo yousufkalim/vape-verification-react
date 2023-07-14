@@ -573,9 +573,11 @@ const Template1: FC = () => {
             <Fade spy={submittedCode} left style={{ width: '100%' }}>
               <div
                 className={`${
-                  codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup invalidresponsePopup_four '
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
@@ -653,9 +655,11 @@ const Template1: FC = () => {
             <Zoom spy={submittedCode} style={{ width: '100%' }}>
               <div
                 className={`${
-                  codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup invalidresponsePopup_four '
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
@@ -731,9 +735,11 @@ const Template1: FC = () => {
             <Zoom bottom spy={submittedCode} style={{ width: '100%' }}>
               <div
                 className={`${
-                  codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup invalidresponsePopup_four '
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
@@ -808,9 +814,11 @@ const Template1: FC = () => {
           ) : (
             <div
               className={`${
-                codeStatus === 'This code has already been scanned on'
-                  ? 'responsePopup'
-                  : 'invalidresponsePopup invalidresponsePopup_four '
+                !brandcode
+                  ? codeStatus === 'This code has already been scanned on'
+                    ? 'responsePopup'
+                    : 'invalidresponsePopup'
+                  : 'withBrandCode'
               }`}
             >
               {codeStatus && (

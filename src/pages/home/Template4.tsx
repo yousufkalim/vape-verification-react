@@ -561,9 +561,11 @@ const Template4: FC = () => {
               {codeStatus && (
                 <div
                   className={`${
-                    codeStatus === 'This code has already been scanned on'
-                      ? 'responsePopup'
-                      : 'invalidresponsePopup'
+                    !brandcode
+                      ? codeStatus === 'This code has already been scanned on'
+                        ? 'responsePopup'
+                        : 'invalidresponsePopup'
+                      : 'withBrandCode'
                   }`}
                 >
                   <>
@@ -641,9 +643,11 @@ const Template4: FC = () => {
             <Zoom spy={submittedCode} style={{ width: '100%' }}>
               <div
                 className={`${
-                  codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup'
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
@@ -718,9 +722,11 @@ const Template4: FC = () => {
             <Zoom spy={submittedCode} bottom style={{ width: '100%' }}>
               <div
                 className={`${
-                  codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup'
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
@@ -794,9 +800,11 @@ const Template4: FC = () => {
           ) : (
             <div
               className={`${
-                codeStatus === 'This code has already been scanned on'
-                  ? 'responsePopup'
-                  : 'invalidresponsePopup'
+                !brandcode
+                  ? codeStatus === 'This code has already been scanned on'
+                    ? 'responsePopup'
+                    : 'invalidresponsePopup'
+                  : 'withBrandCode'
               }`}
             >
               {codeStatus && (
