@@ -582,7 +582,7 @@ const Template1: FC = () => {
                 {codeStatus && (
                   <>
                     <div className="home_status">
-                      <div>
+                      <div style={{ backgroundColor: 'purple', width: '10%' }}>
                         <span>
                           <img src={statusImage} alt="statusImage" />
                         </span>{' '}
@@ -632,7 +632,7 @@ const Template1: FC = () => {
                         {/* {alreadyScanDate && alreadyScanDate} */}
                         {codeStatus === 'This code is invalid.' && (
                           <div className="invalidcodeText">
-                            Do not use product until verifying authenticity
+                            <p>Do not use product until verifying authenticity</p>
                             <div className="morinfoDiv">
                               <img src={Question} alt="Question" />
                               <a
