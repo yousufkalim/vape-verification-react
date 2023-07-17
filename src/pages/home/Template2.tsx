@@ -192,16 +192,16 @@ const Template2: FC = () => {
   }, [brand]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.value.length < 10) {
+    if (e.target.value.length < 12) {
       if (
-        (code.length === 3 && e.target.value.length === 4) ||
-        (code.length === 4 && e.target.value.length === 5)
+        (code.length === 4 && e.target.value.length === 5) ||
+        (code.length === 5 && e.target.value.length === 6)
       ) {
         const splitCode = e.target.value.split('');
-        splitCode.splice(4, 0, '-');
+        splitCode.splice(5, 0, '-');
         const newCode = splitCode.join('');
         setCode(newCode);
-      } else if (code.length === 6 && e.target.value.length === 5) {
+      } else if (code.length === 7 && e.target.value.length === 6) {
         const splitCode = e.target.value.split('-')[0];
         setCode(splitCode);
       } else {
@@ -451,7 +451,7 @@ const Template2: FC = () => {
                     <div>
                       <input
                         className="input_field input_field_2"
-                        placeholder="A1A1-A1A1"
+                        placeholder="A1A1A-A1A1A"
                         type="text"
                         value={code}
                         onChange={handleChange}
