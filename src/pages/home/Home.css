@@ -125,7 +125,7 @@
 
 .heading_main {
   /* font-weight: 600; */
-  font-size: 32px !important;
+  font-size: 23px !important;
   line-height: 2rem;
   padding-bottom: 2rem;
   /* text-align: center; */
@@ -134,7 +134,7 @@
   width: 50%;
 } */
 .responsePopup {
-  width: 43%;
+  width: 50%;
   background: white;
   border-radius: 20px;
   margin-bottom: 40px;
@@ -146,13 +146,6 @@
   border-radius: 20px;
   margin-bottom: 60px;
   margin-left: 10%;
-  z-index: 1;
-}
-.withBrandCode {
-  width: 43%;
-  background: white;
-  border-radius: 20px;
-  margin-bottom: 14%;
   z-index: 1;
 }
 
@@ -234,7 +227,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 25px 0px 15px 0px;
+  padding: 20px 0px 10px 0px;
   margin-left: 7%;
 }
 .home_status_content {
@@ -302,7 +295,7 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
-  margin: 2% 0% 0% 16%;
+  margin: 2% 0% 0% 10%;
   width: 98%;
   gap: 2%;
 }
@@ -344,11 +337,7 @@
   /* flex-wrap: wrap; */
   align-items: center;
 }
-@media screen and (min-width: 1201px) and (max-width: 1600px) {
-  .bottomDiv {
-    height: 41%;
-  }
-}
+
 @media screen and (min-width: 701px) and (max-width: 1200px) {
   .Scaned_date_main_div {
     flex-wrap: wrap;
@@ -365,6 +354,7 @@
 @media screen and (max-width: 700px) {
   .Scaned_date_main_div {
     flex-wrap: wrap;
+    width: 97%;
   }
   .home {
     padding: 20px 5%;
@@ -480,6 +470,9 @@
     margin-left: 5%;
   }
   .bottomDiv {
-    height: 40%;
+    height: 45%;
+  }
+  .socialIconDiv {
+    margin-top: 9%;
   }
 }
