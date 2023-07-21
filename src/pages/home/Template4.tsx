@@ -191,20 +191,19 @@ const Template4: FC = () => {
   }, [brand]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.value.length < 12) {
-      if (
-        (code.length === 4 && e.target.value.length === 5) ||
-        (code.length === 5 && e.target.value.length === 6)
-      ) {
-        const splitCode = e.target.value.split('');
+    const value = e.target.value.toUpperCase();
+
+    if (value.length < 12) {
+      if ((code.length === 4 && value.length === 5) || (code.length === 5 && value.length === 6)) {
+        const splitCode = value.split('');
         splitCode.splice(5, 0, '-');
         const newCode = splitCode.join('');
         setCode(newCode);
-      } else if (code.length === 7 && e.target.value.length === 6) {
-        const splitCode = e.target.value.split('-')[0];
+      } else if (code.length === 7 && value.length === 6) {
+        const splitCode = value.split('-')[0];
         setCode(splitCode);
       } else {
-        setCode(e.target.value);
+        setCode(value);
       }
     }
   };
@@ -321,6 +320,7 @@ const Template4: FC = () => {
   // eslint-disable-next-line
   {
     console.log('codeStatus', codeStatus);
+    console.log('brandcode', brandcode);
   }
   // eslint-disable-next-line
   const Selectedimg = brand?.background?.selectedImg
@@ -565,7 +565,11 @@ const Template4: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                      : codeStatus === 'This code has already been scanned on'
+                      ? 'parmscoderesponsePopupAlreadyscaned'
+                      : codeStatus !== 'This product is valid.'
+                      ? 'paramscodeinvalidresponsePopup'
+                      : 'paramscodevalidresponsePopup'
                   }`}
                 >
                   <>
@@ -647,7 +651,11 @@ const Template4: FC = () => {
                     ? codeStatus === 'This code has already been scanned on'
                       ? 'responsePopup'
                       : 'invalidresponsePopup'
-                    : 'withBrandCode'
+                    : codeStatus === 'This code has already been scanned on'
+                    ? 'parmscoderesponsePopupAlreadyscaned'
+                    : codeStatus !== 'This product is valid.'
+                    ? 'paramscodeinvalidresponsePopup'
+                    : 'paramscodevalidresponsePopup'
                 }`}
               >
                 {codeStatus && (
@@ -726,7 +734,11 @@ const Template4: FC = () => {
                     ? codeStatus === 'This code has already been scanned on'
                       ? 'responsePopup'
                       : 'invalidresponsePopup'
-                    : 'withBrandCode'
+                    : codeStatus === 'This code has already been scanned on'
+                    ? 'parmscoderesponsePopupAlreadyscaned'
+                    : codeStatus !== 'This product is valid.'
+                    ? 'paramscodeinvalidresponsePopup'
+                    : 'paramscodevalidresponsePopup'
                 }`}
               >
                 {codeStatus && (
@@ -804,7 +816,11 @@ const Template4: FC = () => {
                   ? codeStatus === 'This code has already been scanned on'
                     ? 'responsePopup'
                     : 'invalidresponsePopup'
-                  : 'withBrandCode'
+                  : codeStatus === 'This code has already been scanned on'
+                  ? 'parmscoderesponsePopupAlreadyscaned'
+                  : codeStatus !== 'This product is valid.'
+                  ? 'paramscodeinvalidresponsePopup'
+                  : 'paramscodevalidresponsePopup'
               }`}
             >
               {codeStatus && (
