@@ -140,12 +140,33 @@
   margin-bottom: 40px;
   z-index: 1;
 }
+.parmscoderesponsePopupAlreadyscaned {
+  width: 50%;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  z-index: 1;
+}
 .invalidresponsePopup {
   width: 32%;
   background: white;
   border-radius: 20px;
   margin-bottom: 60px;
   margin-left: 10%;
+  z-index: 1;
+}
+.paramscodeinvalidresponsePopup {
+  width: 32%;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 10%;
+  z-index: 1;
+}
+.paramscodevalidresponsePopup {
+  width: 32%;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 10%;
   z-index: 1;
 }
 
@@ -342,7 +363,16 @@
   .Scaned_date_main_div {
     flex-wrap: wrap;
   }
+  .paramscodeinvalidresponsePopup {
+    width: 60%;
+  }
+  .paramscodevalidresponsePopup {
+    width: 55%;
+  }
   .responsePopup {
+    margin-bottom: 30px;
+  }
+  .parmscoderesponsePopupAlreadyscaned {
     margin-bottom: 30px;
   }
   /* .morinfoDiv{
@@ -428,9 +458,23 @@
     width: 90%;
     margin-bottom: 40px;
   }
+  .parmscoderesponsePopupAlreadyscaned {
+    width: 90%;
+    margin-bottom: 25%;
+  }
   .invalidresponsePopup {
     width: 90%;
     margin-bottom: 0px;
+    margin-left: 0%;
+  }
+  .paramscodeinvalidresponsePopup {
+    width: 90%;
+    margin-bottom: 50%;
+    margin-left: 0%;
+  }
+  .paramscodevalidresponsePopup {
+    width: 90%;
+    margin-bottom: 25%;
     margin-left: 0%;
   }
 
