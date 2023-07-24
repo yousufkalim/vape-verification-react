@@ -333,6 +333,10 @@ const Template3: FC = () => {
 
     // setFeedbackForms(updatedForm);
   };
+  const websiteLink =
+    brand?.websiteLink && !brand.websiteLink.startsWith('http')
+      ? `https://${brand.websiteLink}`
+      : brand.websiteLink;
 
   if (loading) {
     return (
@@ -374,11 +378,7 @@ const Template3: FC = () => {
             {brand?.logo && (
               <>
                 <LightTooltip title={brand?.description ? brand?.description : ''}>
-                  <a
-                    href={brand?.websiteLink ? brand?.websiteLink : ''}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+                  <a href={websiteLink} target="_blank" rel="noreferrer">
                     <img
                       className="brand_logo1"
                       style={{
