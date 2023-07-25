@@ -223,6 +223,7 @@ const Template4: FC = () => {
       code_type: codeType,
       feedbacks: allFields,
     };
+    console.log('res2', bCode);
     if (bCode !== '') {
       setSubmitLoading(true);
       api<IBody>('post', '/codes/validate', body)
@@ -244,6 +245,7 @@ const Template4: FC = () => {
         })
         .catch((err) => {
           const { status, message, validationTime } = err.response.data;
+          console.log('res', err);
           if (status === 'used') {
             if (validationTime) {
               // const date = moment(validationTime).format('h:mm A DD-MMM-YYYY ');
@@ -278,6 +280,15 @@ const Template4: FC = () => {
             setStatusBg(InValidBg);
             setStatusImage(InValidImage);
           }
+          if (status === 'invalidType') {
+            const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {
+              return { ...feedbackForm, value: '' };
+            });
+            setFeedbackForms(feedbackIs);
+            setCodeStatus('The code type is invalid, it should be NFC code.');
+            setStatusBg(InValidBg);
+            setStatusImage(InValidImage);
+          }
           setSubmittedCode(code);
           setCode('');
           setSubmitLoading(false);
@@ -287,7 +298,6 @@ const Template4: FC = () => {
     }
   };
 
-  console.log('BRAND ==> ', brand);
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
   const socialIcon = (icon: string): string => {
@@ -312,7 +322,6 @@ const Template4: FC = () => {
 
     if (brand?.favIcon) {
       const favIs = `${mediaUrl}/${brand?.favIcon}`;
-      console.log('favIs for uodatetion', favIs);
       favicon.href = favIs;
     }
   }, [brand]);
@@ -340,7 +349,6 @@ const Template4: FC = () => {
 
     // setFeedbackForms(updatedForm);
   };
-  console.log('websiteLink', brand?.websiteLink);
 
   const websiteLink =
     brand?.websiteLink && !brand.websiteLink.startsWith('http')
@@ -587,6 +595,13 @@ const Template4: FC = () => {
                             ? 'statusScanned'
                             : 'status'
                         }`}
+                        style={{
+                          padding: `${
+                            codeStatus === 'The code type is invalid, it should be NFC code.'
+                              ? '20px'
+                              : 'auto'
+                          }`,
+                        }}
                       >
                         {codeStatus}
 
@@ -673,6 +688,13 @@ const Template4: FC = () => {
                           ? 'statusScanned'
                           : 'status'
                       }`}
+                      style={{
+                        padding: `${
+                          codeStatus === 'The code type is invalid, it should be NFC code.'
+                            ? '20px'
+                            : 'auto'
+                        }`,
+                      }}
                     >
                       {codeStatus}
 
@@ -756,6 +778,13 @@ const Template4: FC = () => {
                           ? 'statusScanned'
                           : 'status'
                       }`}
+                      style={{
+                        padding: `${
+                          codeStatus === 'The code type is invalid, it should be NFC code.'
+                            ? '20px'
+                            : 'auto'
+                        }`,
+                      }}
                     >
                       {codeStatus}
 
@@ -838,6 +867,9 @@ const Template4: FC = () => {
                         ? 'statusScanned'
                         : 'status'
                     }`}
+                    style={{
+                      padding: `${codeStatus === 'Code type is invalid' ? '20px' : 'auto'}`,
+                    }}
                   >
                     {codeStatus}
 
