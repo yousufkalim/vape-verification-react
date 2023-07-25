@@ -291,6 +291,15 @@ const Template1: FC = () => {
             setStatusBg(InValidBg);
             setStatusImage(InValidImage);
           }
+          if (status === 'invalidType') {
+            const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {
+              return { ...feedbackForm, value: '' };
+            });
+            setFeedbackForms(feedbackIs);
+            setCodeStatus('The code type is invalid, it should be NFC code.');
+            setStatusBg(InValidBg);
+            setStatusImage(InValidImage);
+          }
           setSubmittedCode(code);
           setCode('');
           setSubmitLoading(false);
