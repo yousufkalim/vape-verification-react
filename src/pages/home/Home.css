@@ -340,6 +340,17 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: 5px;
+  margin-bottom: 1%;
+}
+.socialIconDiv a {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .socialIcon {
   margin: 10px 10px;
