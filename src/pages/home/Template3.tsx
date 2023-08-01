@@ -16,13 +16,13 @@ import InValidImage from '../../assets/home/invalid.svg';
 import UsedBg from '../../assets/home/used_bg.svg';
 import UsedImage from '../../assets/home/used.svg';
 import Loading from '../../assets/loader.gif';
-import Facebook from '../../assets/Facebook.svg';
-import Twitter from '../../assets/Twitter.svg';
-import YouTube from '../../assets/YouTube.svg';
-import Instagram from '../../assets/Instagram.svg';
-import LinkedIn from '../../assets/LinkedIn.svg';
-import Reddit from '../../assets/Reddit.svg';
-import Telegram from '../../assets/Telegram.svg';
+import { ReactComponent as Facebook } from '../../assets/Facebook.svg';
+import { ReactComponent as Twitter } from '../../assets/Twitter.svg';
+import { ReactComponent as YouTube } from '../../assets/YouTube.svg';
+import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
+import { ReactComponent as LinkedIn } from '../../assets/LinkedIn.svg';
+import { ReactComponent as Reddit } from '../../assets/Reddit.svg';
+import { ReactComponent as Telegram } from '../../assets/Telegram.svg';
 import './Home.css';
 import './Template2.css';
 import { toast } from 'react-toastify';
@@ -82,6 +82,7 @@ interface IBrand {
   customizeButton?: customizeButton;
   description?: string;
   pageAnimation?: string;
+  socialMediaColor?: string;
 }
 interface IfeedbackForm {
   _id: string;
@@ -131,6 +132,7 @@ const Template3: FC = () => {
     url: '',
     favIcon: '',
     socialMedia: [],
+    socialMediaColor: '',
     customizeButton: {
       btnType: '',
       radius: '',
@@ -297,21 +299,80 @@ const Template3: FC = () => {
 
   const logo = brand?.logo ? `${mediaUrl}/${brand?.logo}` : '';
 
-  const socialIcon = (icon: string): string => {
+  // const socialIcon = (icon: string): string => {
+  //   if (icon === 'telegram') {
+  //     return Telegram;
+  //   } else if (icon === 'linkedIn') {
+  //     return LinkedIn;
+  //   } else if (icon === 'twitter') {
+  //     return Twitter;
+  //   } else if (icon === 'facebook') {
+  //     return Facebook;
+  //   } else if (icon === 'reddit') {
+  //     return Reddit;
+  //   } else if (icon === 'instagram') {
+  //     return Instagram;
+  //   } else {
+  //     return YouTube;
+  //   }
+  // };
+  const socialIcon = (icon: string): JSX.Element => {
     if (icon === 'telegram') {
-      return Telegram;
+      return (
+        <Telegram
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'linkedIn') {
-      return LinkedIn;
+      return (
+        <LinkedIn
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'twitter') {
-      return Twitter;
+      return (
+        <Twitter
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'facebook') {
-      return Facebook;
+      return (
+        <Facebook
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'reddit') {
-      return Reddit;
+      return (
+        <Reddit
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'instagram') {
-      return Instagram;
+      return (
+        <Instagram
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else {
-      return YouTube;
+      return (
+        <YouTube
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     }
   };
   useEffect((): void => {
@@ -321,6 +382,14 @@ const Template3: FC = () => {
       const favIs = `${mediaUrl}/${brand?.favIcon}`;
       console.log('favIs for uodatetion', favIs);
       favicon.href = favIs;
+    }
+  }, [brand]);
+
+  useEffect(() => {
+    const pageTitle = document.querySelector('title') as HTMLElement;
+
+    if (brand?.name) {
+      pageTitle.innerText = brand?.name;
     }
   }, [brand]);
 
@@ -891,8 +960,11 @@ const Template3: FC = () => {
             {brand?.socialMedia?.length !== 0 &&
               brand?.socialMedia?.map((social: any) => (
                 <>
-                  <a href={social.link} target="_blank" rel="noreferrer">
+                  {/* <a href={social.link} target="_blank" rel="noreferrer">
                     <img src={socialIcon(social?.platform)} className="socialIcon" />
+                  </a> */}
+                  <a href={social.link} target="_blank" rel="noreferrer">
+                    {socialIcon(social?.platform)}
                   </a>
                 </>
               ))}
