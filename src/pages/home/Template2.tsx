@@ -2,8 +2,8 @@ import React, { FC, FormEvent, useLayoutEffect, useState, useEffect } from 'reac
 import api from '../../api/request';
 import moment from 'moment';
 import { Zoom, Fade } from 'react-reveal';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
+// import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+// import { styled } from '@mui/material/styles';
 
 /*    Assets    */
 // import HomeLogo from '../../assets/home/logo.svg';
@@ -95,16 +95,16 @@ interface IfeedbackForm {
   isActive: boolean;
 }
 
-const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-}));
+// const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+//   <Tooltip {...props} classes={{ popper: className }} />
+// ))(({ theme }) => ({
+//   [`& .${tooltipClasses.tooltip}`]: {
+//     backgroundColor: theme.palette.common.white,
+//     color: 'rgba(0, 0, 0, 0.87)',
+//     boxShadow: theme.shadows[1],
+//     fontSize: 11,
+//   },
+// }));
 
 // const status = 'valid';
 const Template2: FC = () => {
@@ -143,7 +143,7 @@ const Template2: FC = () => {
     description: '',
   });
 
-  // console.log('codeStatus', codeStatus);
+  console.log('brand', brand);
   console.log('statusBg', statusBg);
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -457,19 +457,24 @@ const Template2: FC = () => {
           <div className="home_logo">
             {brand?.logo && (
               <>
-                <LightTooltip title={brand?.description ? brand?.description : ''}>
-                  <a href={websiteLink} target="_blank" rel="noreferrer">
-                    <img
-                      className="brand_logo1"
-                      style={{
-                        // width: '20%',
-                        // background: `url(${logo})`,
-                        width: `${brand?.logoWidth ? brand?.logoWidth + 'px' : '200px'}`,
-                      }}
-                      src={logo}
-                    />
-                  </a>
-                </LightTooltip>
+                {/* <LightTooltip title={brand?.description ? brand?.description : ''}> */}
+                <a href={websiteLink} target="_blank" rel="noreferrer">
+                  <img
+                    className="brand_logo1"
+                    style={{
+                      // width: '20%',
+                      // background: `url(${logo})`,
+                      width: `${brand?.logoWidth ? brand?.logoWidth + 'px' : '200px'}`,
+                    }}
+                    src={logo}
+                  />
+                </a>
+                {/* </LightTooltip> */}
+                {brand?.description?.length && (
+                  <div className="home_Desp">
+                    <p>{brand?.description ? brand?.description : ''}</p>
+                  </div>
+                )}
               </>
             )}
             {/* <div className="logo_title">{brand?.name}</div> */}
@@ -582,7 +587,7 @@ const Template2: FC = () => {
                             : brand?.customizeButton?.bgColor
                             ? brand?.customizeButton?.bgColor
                             : '#236fda',
-                        color: brand?.customizeButton?.btnType === 'outline' ? 'black' : '',
+                        color: brand?.customizeButton?.btnType === 'outline' ? 'black' : 'white',
                         fontFamily: brand?.customizeButton?.fontName
                           ? brand?.customizeButton?.fontName
                           : 'Poppins',
@@ -608,6 +613,329 @@ const Template2: FC = () => {
               </div>
             </div>
           )}
+          <div className="animatedPopUp2">
+            {brand.pageAnimation === 'moveIn' ? (
+              <Fade spy={submittedCode} left style={{ width: '100%' }}>
+                <div
+                  className={`${
+                    !brandcode
+                      ? codeStatus === 'This code has already been scanned on'
+                        ? 'responsePopup'
+                        : 'invalidresponsePopup'
+                      : 'withBrandCode'
+                  }`}
+                >
+                  {codeStatus && (
+                    <>
+                      <div className="home_status">
+                        <div style={{ width: '10%' }}>
+                          {/* <span> */}
+                          <img style={{ width: '100%' }} src={statusImage} alt="statusImage" />
+                          {/* </span> */}
+                        </div>
+                        <div
+                          className={`${
+                            codeStatus === 'This code has already been scanned on'
+                              ? 'statusScanned'
+                              : 'status'
+                          }`}
+                        >
+                          {codeStatus}
+                          <div className="ScanedDate">
+                            {codeStatus === 'This code has already been scanned on' && (
+                              <div className="Scaned_date_main_div">
+                                <div style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
+                                  <span>{timestate}</span>
+                                  <span className="dateLine"></span>
+                                  <span>{alreadyScanDate}</span>
+                                </div>
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+
+                            {codeStatus === 'This product is valid.' && (
+                              <div className="Scaned_date_main_div">
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          {/* {alreadyScanDate && alreadyScanDate} */}
+                          {codeStatus === 'This code is invalid.' && (
+                            <div className="invalidcodeText">
+                              <p>Do not use product until verifying authenticity</p>
+                              <div className="morinfoDiv">
+                                <img src={Question} alt="Question" />
+                                <a
+                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  rel="noreferrer"
+                                  target="_blank"
+                                ></a>
+                                <div className="moreInfospan"> More information</div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </Fade>
+            ) : brand.pageAnimation === 'zoomIn' ? (
+              <Zoom spy={submittedCode} style={{ width: '100%' }}>
+                <div
+                  className={`${
+                    !brandcode
+                      ? codeStatus === 'This code has already been scanned on'
+                        ? 'responsePopup'
+                        : 'invalidresponsePopup'
+                      : 'withBrandCode'
+                  }`}
+                >
+                  {codeStatus && (
+                    <>
+                      <div className="home_status">
+                        <div>
+                          <span>
+                            <img src={statusImage} alt="statusImage" />
+                          </span>{' '}
+                        </div>
+                        <div
+                          className={`${
+                            codeStatus === 'This code has already been scanned on'
+                              ? 'statusScanned'
+                              : 'status'
+                          }`}
+                        >
+                          {codeStatus}
+                          <div className="ScanedDate">
+                            {codeStatus === 'This code has already been scanned on' && (
+                              <div className="Scaned_date_main_div">
+                                <span>{timestate}</span>
+                                <span className="dateLine"></span>
+                                <span>{alreadyScanDate}</span>
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+
+                            {codeStatus === 'This product is valid.' && (
+                              <div className="Scaned_date_main_div">
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          {/* {alreadyScanDate && alreadyScanDate} */}
+                          {codeStatus === 'This code is invalid.' && (
+                            <div className="invalidcodeText">
+                              Do not use product until verifying authenticity
+                              <div className="morinfoDiv">
+                                <img src={Question} alt="Question" />
+                                <a
+                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  rel="noreferrer"
+                                  target="_blank"
+                                ></a>
+                                <div className="moreInfospan"> More information</div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </Zoom>
+            ) : brand.pageAnimation === 'bottom' ? (
+              <Zoom bottom spy={submittedCode} style={{ width: '100%' }}>
+                <div
+                  className={`${
+                    !brandcode
+                      ? codeStatus === 'This code has already been scanned on'
+                        ? 'responsePopup'
+                        : 'invalidresponsePopup'
+                      : 'withBrandCode'
+                  }`}
+                >
+                  {codeStatus && (
+                    <>
+                      <div className="home_status">
+                        <div>
+                          <span>
+                            <img src={statusImage} alt="statusImage" />
+                          </span>{' '}
+                        </div>
+                        <div
+                          className={`${
+                            codeStatus === 'This code has already been scanned on'
+                              ? 'statusScanned'
+                              : 'status'
+                          }`}
+                        >
+                          {codeStatus}
+                          <div className="ScanedDate">
+                            {codeStatus === 'This code has already been scanned on' && (
+                              <div className="Scaned_date_main_div">
+                                <span>{timestate}</span>
+                                <span className="dateLine"></span>
+                                <span>{alreadyScanDate}</span>
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+
+                            {codeStatus === 'This product is valid.' && (
+                              <div className="Scaned_date_main_div">
+                                <div className="morinfoDiv">
+                                  <img src={Question} alt="Question" />
+                                  <a
+                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    rel="noreferrer"
+                                    target="_blank"
+                                  ></a>
+                                  <div className="moreInfospan"> More information</div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          {/* {alreadyScanDate && alreadyScanDate} */}
+                          {codeStatus === 'This code is invalid.' && (
+                            <div className="invalidcodeText">
+                              Do not use product until verifying authenticity
+                              <div className="morinfoDiv">
+                                <img src={Question} alt="Question" />
+                                <a
+                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  rel="noreferrer"
+                                  target="_blank"
+                                ></a>
+                                <div className="moreInfospan"> More information</div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </Zoom>
+            ) : (
+              <div
+                className={`${
+                  !brandcode
+                    ? codeStatus === 'This code has already been scanned on'
+                      ? 'responsePopup'
+                      : 'invalidresponsePopup'
+                    : 'withBrandCode'
+                }`}
+              >
+                {codeStatus && (
+                  <>
+                    <div className="home_status">
+                      <div>
+                        <span>
+                          <img src={statusImage} alt="statusImage" />
+                        </span>{' '}
+                      </div>
+                      <div
+                        className={`${
+                          codeStatus === 'This code has already been scanned on'
+                            ? 'statusScanned'
+                            : 'status'
+                        }`}
+                      >
+                        {codeStatus}
+                        <div className="ScanedDate">
+                          {codeStatus === 'This code has already been scanned on' && (
+                            <div className="Scaned_date_main_div">
+                              <span>{timestate}</span>
+                              <span className="dateLine"></span>
+                              <span>{alreadyScanDate}</span>
+                              <div className="morinfoDiv already_scaned">
+                                <img src={Question} alt="Question" />
+                                <a
+                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  rel="noreferrer"
+                                  target="_blank"
+                                ></a>
+                                <div className="moreInfospan "> More information</div>
+                              </div>
+                            </div>
+                          )}
+
+                          {codeStatus === 'This product is valid.' && (
+                            <div className="Scaned_date_main_div">
+                              <div className="morinfoDiv">
+                                <img src={Question} alt="Question" />
+                                <a
+                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  rel="noreferrer"
+                                  target="_blank"
+                                ></a>
+                                <div className="moreInfospan"> More information</div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        {/* {alreadyScanDate && alreadyScanDate} */}
+                        {codeStatus === 'This code is invalid.' && (
+                          <div className="invalidcodeText">
+                            Do not use product until verifying authenticity
+                            <div className="morinfoDiv">
+                              <img src={Question} alt="Question" />
+                              <a
+                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                rel="noreferrer"
+                                target="_blank"
+                              ></a>
+                              <div className="moreInfospan"> More information</div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
         <div className="">
           <img src={logo} className="logoFixed_3" />
@@ -621,343 +949,6 @@ const Template2: FC = () => {
           }
         >
           {/* <div className="responsePopup"> */}
-          {brand.pageAnimation === 'moveIn' ? (
-            <Fade spy={submittedCode} left style={{ width: '100%' }}>
-              <div
-                className={`${
-                  !brandcode
-                    ? codeStatus === 'This code has already been scanned on'
-                      ? 'responsePopup'
-                      : 'invalidresponsePopup'
-                    : codeStatus === 'This code has already been scanned on'
-                    ? 'parmscoderesponsePopupAlreadyscaned'
-                    : codeStatus !== 'This product is valid.'
-                    ? 'paramscodeinvalidresponsePopup'
-                    : 'paramscodevalidresponsePopup'
-                }`}
-              >
-                {codeStatus && (
-                  <>
-                    <div className="home_status">
-                      <div>
-                        <span>
-                          <img src={statusImage} alt="statusImage" />
-                        </span>{' '}
-                      </div>
-                      <div
-                        className={`${
-                          codeStatus === 'This code has already been scanned on'
-                            ? 'statusScanned'
-                            : 'status'
-                        }`}
-                      >
-                        {codeStatus}
-                        <div className="ScanedDate">
-                          {codeStatus === 'This code has already been scanned on' && (
-                            <div className="Scaned_date_main_div">
-                              <div style={{ width: 'fit-content', whiteSpace: 'nowrap' }}>
-                                <span>{timestate}</span>
-                                <span className="dateLine"></span>
-                                <span>{alreadyScanDate}</span>
-                              </div>
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-
-                          {codeStatus === 'This product is valid.' && (
-                            <div className="Scaned_date_main_div">
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        {/* {alreadyScanDate && alreadyScanDate} */}
-                        {codeStatus === 'This code is invalid.' && (
-                          <div className="invalidcodeText">
-                            Do not use product until verifying authenticity
-                            <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
-                              <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                rel="noreferrer"
-                                target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            </Fade>
-          ) : brand.pageAnimation === 'zoomIn' ? (
-            <Zoom spy={submittedCode} style={{ width: '100%' }}>
-              <div
-                className={`${
-                  !brandcode
-                    ? codeStatus === 'This code has already been scanned on'
-                      ? 'responsePopup'
-                      : 'invalidresponsePopup'
-                    : codeStatus === 'This code has already been scanned on'
-                    ? 'parmscoderesponsePopupAlreadyscaned'
-                    : codeStatus !== 'This product is valid.'
-                    ? 'paramscodeinvalidresponsePopup'
-                    : 'paramscodevalidresponsePopup'
-                }`}
-              >
-                {codeStatus && (
-                  <>
-                    <div className="home_status">
-                      <div>
-                        <span>
-                          <img src={statusImage} alt="statusImage" />
-                        </span>{' '}
-                      </div>
-                      <div
-                        className={`${
-                          codeStatus === 'This code has already been scanned on'
-                            ? 'statusScanned'
-                            : 'status'
-                        }`}
-                      >
-                        {codeStatus}
-                        <div className="ScanedDate">
-                          {codeStatus === 'This code has already been scanned on' && (
-                            <div className="Scaned_date_main_div">
-                              <span>{timestate}</span>
-                              <span className="dateLine"></span>
-                              <span>{alreadyScanDate}</span>
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-
-                          {codeStatus === 'This product is valid.' && (
-                            <div className="Scaned_date_main_div">
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        {/* {alreadyScanDate && alreadyScanDate} */}
-                        {codeStatus === 'This code is invalid.' && (
-                          <div className="invalidcodeText">
-                            Do not use product until verifying authenticity
-                            <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
-                              <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                rel="noreferrer"
-                                target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            </Zoom>
-          ) : brand.pageAnimation === 'bottom' ? (
-            <Zoom bottom spy={submittedCode} style={{ width: '100%' }}>
-              <div
-                className={`${
-                  !brandcode
-                    ? codeStatus === 'This code has already been scanned on'
-                      ? 'responsePopup'
-                      : 'invalidresponsePopup'
-                    : codeStatus === 'This code has already been scanned on'
-                    ? 'parmscoderesponsePopupAlreadyscaned'
-                    : codeStatus !== 'This product is valid.'
-                    ? 'paramscodeinvalidresponsePopup'
-                    : 'paramscodevalidresponsePopup'
-                }`}
-              >
-                {codeStatus && (
-                  <>
-                    <div className="home_status">
-                      <div>
-                        <span>
-                          <img src={statusImage} alt="statusImage" />
-                        </span>{' '}
-                      </div>
-                      <div
-                        className={`${
-                          codeStatus === 'This code has already been scanned on'
-                            ? 'statusScanned'
-                            : 'status'
-                        }`}
-                      >
-                        {codeStatus}
-                        <div className="ScanedDate">
-                          {codeStatus === 'This code has already been scanned on' && (
-                            <div className="Scaned_date_main_div">
-                              <span>{timestate}</span>
-                              <span className="dateLine"></span>
-                              <span>{alreadyScanDate}</span>
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-
-                          {codeStatus === 'This product is valid.' && (
-                            <div className="Scaned_date_main_div">
-                              <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
-                                <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                  rel="noreferrer"
-                                  target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        {/* {alreadyScanDate && alreadyScanDate} */}
-                        {codeStatus === 'This code is invalid.' && (
-                          <div className="invalidcodeText">
-                            Do not use product until verifying authenticity
-                            <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
-                              <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                rel="noreferrer"
-                                target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            </Zoom>
-          ) : (
-            <div
-              className={`${
-                !brandcode
-                  ? codeStatus === 'This code has already been scanned on'
-                    ? 'responsePopup'
-                    : 'invalidresponsePopup'
-                  : codeStatus === 'This code has already been scanned on'
-                  ? 'parmscoderesponsePopupAlreadyscaned'
-                  : codeStatus !== 'This product is valid.'
-                  ? 'paramscodeinvalidresponsePopup'
-                  : 'paramscodevalidresponsePopup'
-              }`}
-            >
-              {codeStatus && (
-                <>
-                  <div className="home_status">
-                    <div>
-                      <span>
-                        <img src={statusImage} alt="statusImage" />
-                      </span>{' '}
-                    </div>
-                    <div
-                      className={`${
-                        codeStatus === 'This code has already been scanned on'
-                          ? 'statusScanned'
-                          : 'status'
-                      }`}
-                    >
-                      {codeStatus}
-                      <div className="ScanedDate">
-                        {codeStatus === 'This code has already been scanned on' && (
-                          <div className="Scaned_date_main_div">
-                            <span>{timestate}</span>
-                            <span className="dateLine"></span>
-                            <span>{alreadyScanDate}</span>
-                            <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
-                              <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                rel="noreferrer"
-                                target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
-                            </div>
-                          </div>
-                        )}
-
-                        {codeStatus === 'This product is valid.' && (
-                          <div className="Scaned_date_main_div">
-                            <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
-                              <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                                rel="noreferrer"
-                                target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      {/* {alreadyScanDate && alreadyScanDate} */}
-                      {codeStatus === 'This code is invalid.' && (
-                        <div className="invalidcodeText">
-                          Do not use product until verifying authenticity
-                          <div className="morinfoDiv">
-                            <img src={Question} alt="Question" />
-                            <a
-                              href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
-                              rel="noreferrer"
-                              target="_blank"
-                            ></a>
-                            <div className="moreInfospan"> More information</div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
 
           <div className="socialIconDiv">
             {brand?.socialMedia?.length !== 0 &&

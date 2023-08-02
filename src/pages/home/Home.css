@@ -1,6 +1,9 @@
 .mainDiv1 {
   height: 100vh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .home {
@@ -34,7 +37,7 @@
 .home_wrapper {
   width: 100%;
   padding-top: 30px;
-  min-height: 52%;
+  /* min-height: 52%; */
   height: fit-content;
 }
 .logoFixed {
@@ -47,13 +50,22 @@
 }
 .bottomDiv {
   /* background: rgb(3, 40, 56); */
-  height: 35%;
+  /* height: 35%; */
   /* clip-path: polygon(100% 0%, 0% 18%, 0% 100%, 100% 100%); */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 20px;
+  height: fit-content;
+  /* background-color: red; */
+}
+.animatedPopUp2 {
+  width: 100%;
+  /* background-color: green; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bottomDivWithbrand {
   background: rgb(3, 40, 56);
@@ -86,12 +98,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 5px;
-  padding-bottom: 2.5%;
+  padding-bottom: 8px;
 }
 .brand_logo {
   max-width: 8rem;
   max-height: 8rem;
+}
+.home_Desp {
+  width: 100%;
+  padding: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_Desp p {
+  width: 80%;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
 }
 
 .logo_title {
@@ -105,7 +131,7 @@
   background-color: #fff;
   border-radius: 3rem;
   border: 2px solid black;
-  margin-bottom: 7%;
+  margin-bottom: 20px;
   position: relative;
   z-index: 1;
 }
@@ -148,6 +174,14 @@
   z-index: 1;
 }
 .invalidresponsePopup {
+  width: 32%;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 60px;
+  /* margin-left: 10%; */
+  z-index: 1;
+}
+.invalidresponsePopup4 {
   width: 32%;
   background: white;
   border-radius: 20px;
@@ -246,10 +280,10 @@
 
 .home_status {
   display: flex;
-  justify-content: left;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 20px 0px 10px 0px;
-  margin-left: 7%;
+  padding: 10px 0px;
+  /* margin-left: 7%; */
 }
 .home_status_content {
   display: flex;
@@ -263,17 +297,20 @@
   font-size: 22px;
   font-weight: 600;
   color: #454238;
-  padding: 0px 0px 0px 30px;
+  width: 90%;
+  /* padding: 0px 0px 0px 30px; */
 }
 
 .status {
   font-size: 22px;
   font-weight: 600;
+  width: 80%;
   color: #454238;
-  padding: 0px 0px 0px 15px;
+  /* background-color: green; */
+  /* padding: 0px 0px 0px 15px; */
 }
 .status span {
-  margin-right: 2rem;
+  /* margin-right: 2rem; */
 }
 .status img {
   max-width: 100%;
@@ -316,7 +353,7 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
-  margin: 2% 0% 0% 10%;
+  /* margin: 2% 0% 0% 10%; */
   width: 98%;
   gap: 2%;
 }
@@ -327,7 +364,7 @@
   color: #1aabe9;
   text-decoration: underline;
   display: flex;
-  width: 54%;
+  /* width: 54%; */
   align-items: center;
   padding-bottom: 3%;
 }
@@ -423,9 +460,9 @@
     border-bottom: 1px solid #236fda;
     padding-bottom: 3rem;
   }
-  .home_logo {
+  /* .home_logo {
     padding-bottom: 1%;
-  }
+  } */
   .home_content_bottom {
     background-size: 30%;
   }
@@ -457,6 +494,7 @@
   .home_content {
     width: 95%;
     margin-top: 50px;
+    background-color: red;
   }
   .home_footer {
     /* height: 50vh; */
@@ -474,9 +512,14 @@
     margin-bottom: 25%;
   }
   .invalidresponsePopup {
-    width: 90%;
+    width: 95%;
     margin-bottom: 0px;
     margin-left: 0%;
+  }
+  .invalidresponsePopup4 {
+    width: 95%;
+    margin-bottom: 0;
+    margin-left: 0;
   }
   .paramscodeinvalidresponsePopup {
     width: 90%;
@@ -525,7 +568,7 @@
     margin-left: 5%;
   }
   .bottomDiv {
-    height: 45%;
+    /* height: 45%; */
   }
   .socialIconDiv {
     margin-top: 9%;
