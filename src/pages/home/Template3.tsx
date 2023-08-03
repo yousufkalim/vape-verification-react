@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useLayoutEffect, useState, useEffect } from 'reac
 import api from '../../api/request';
 import moment from 'moment';
 import { Zoom, Fade } from 'react-reveal';
+import { motion } from 'framer-motion';
 // import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 // import { styled } from '@mui/material/styles';
 
@@ -451,7 +452,22 @@ const Template3: FC = () => {
           />
         )}
 
-        <div className="home_wrapper">
+        <motion.div
+          initial={{
+            x: brand.pageAnimation === 'moveIn' ? -300 : 0,
+            y: brand.pageAnimation === 'bottom' ? 400 : 0,
+            opacity:
+              brand.pageAnimation === 'moveIn' ||
+              brand.pageAnimation === 'bottom' ||
+              brand.pageAnimation === 'zoomIn'
+                ? 0.6
+                : 1,
+            scale: brand.pageAnimation === 'zoomIn' ? 0.6 : 1,
+          }}
+          whileInView={{ x: 0, opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="home_wrapper"
+        >
           <div className="home_logo">
             {brand?.logo && (
               <>
@@ -934,7 +950,7 @@ const Template3: FC = () => {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
         <div className="background_img_logo">
           <img src={logo} className="logoFixed" />
         </div>
