@@ -430,9 +430,24 @@ const Template2: FC = () => {
       <div
         className={`mainDiv1`}
         style={{
-          backgroundColor: brand?.background?.type === 'color' ? brand?.background.color : ``,
+          backgroundColor:
+            brand?.background?.type === 'color'
+              ? brand?.background.color
+              : brand?.background?.type === 'default'
+              ? brand?.preferences?.secondaryColor
+              : '',
         }}
       >
+        {brand?.background?.type === 'default' && (
+          <div className="defaultBgContainer">
+            <div
+              className="defaultBgUpperDiv"
+              style={{
+                background: brand?.background?.type === 'default' ? brand?.preferences?.color : '',
+              }}
+            />
+          </div>
+        )}
         {brand?.background?.type === 'Selected' ? (
           <img src={Selectedimg} alt="Background Image" className="backgroundImg" />
         ) : (

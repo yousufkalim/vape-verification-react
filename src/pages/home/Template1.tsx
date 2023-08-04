@@ -446,9 +446,24 @@ const Template1: FC = () => {
       <div
         className={`mainDiv1`}
         style={{
-          backgroundColor: brand?.background?.type === 'color' ? brand?.background.color : ``,
+          backgroundColor:
+            brand?.background?.type === 'color'
+              ? brand?.background.color
+              : brand?.background?.type === 'default'
+              ? brand?.preferences?.secondaryColor
+              : '',
         }}
       >
+        {brand?.background?.type === 'default' && (
+          <div className="defaultBgContainer">
+            <div
+              className="defaultBgUpperDiv"
+              style={{
+                background: brand?.background?.type === 'default' ? brand?.preferences?.color : '',
+              }}
+            />
+          </div>
+        )}
         {brand?.background?.type === 'Selected' ? (
           <img src={Selectedimg} alt="Background Image" className="backgroundImg" />
         ) : (
@@ -478,7 +493,7 @@ const Template1: FC = () => {
               brand.pageAnimation === 'moveIn' ||
               brand.pageAnimation === 'bottom' ||
               brand.pageAnimation === 'zoomIn'
-                ? 0.6
+                ? 0.8
                 : 1,
             scale: brand.pageAnimation === 'zoomIn' ? 0.6 : 1,
           }}
@@ -985,7 +1000,8 @@ const Template1: FC = () => {
           className="bottomDiv"
           style={
             {
-              // background: brand?.preferences?.secondaryColor,
+              // background:
+              //   brand?.background?.type === 'default' ? brand?.preferences?.secondaryColor : '',
             }
           }
         >
