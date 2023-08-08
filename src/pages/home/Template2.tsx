@@ -116,6 +116,7 @@ const Template2: FC = () => {
   const [statusBg, setStatusBg] = useState<string>('');
   const [statusImage, setStatusImage] = useState<string>('');
   const [feedbackForms, setFeedbackForms] = useState<IfeedbackForm[] | any>([]);
+  const currentYear = new Date().getFullYear(); //for footer year
   // eslint-disable-next-line
   const [feedbacks, setFeedbacks] = useState<any>([]);
   const [brand, setBrand] = useState<IBrand>({
@@ -994,16 +995,19 @@ const Template2: FC = () => {
                 </>
               ))}
           </div>
-          <div className="home_footer">
-            © 2023{' '}
-            <span>
+          <div className="home_footer" style={{ color: brand?.socialMediaColor }}>
+          © {currentYear}{' '}
+          <span>
+            <a 
+              href="https://getveriscan.com" 
+              target="_blank" 
+              rel="noreferrer"
+            >
               VeriScan
-              {/* <a href="https://falconitconsultant.com" target="_blank" rel="noreferrer">
-                  @Falcon Consulting
-                </a> */}
-            </span>
-            , All Rights Reserved.
-          </div>
+            </a>
+          </span>
+          , All Rights Reserved.
+        </div>
         </div>
       </div>
     );
