@@ -116,7 +116,7 @@ const Template2: FC = () => {
   const [statusBg, setStatusBg] = useState<string>('');
   const [statusImage, setStatusImage] = useState<string>('');
   const [feedbackForms, setFeedbackForms] = useState<IfeedbackForm[] | any>([]);
-  const currentYear = new Date().getFullYear(); //for footer year
+  const currentYear = new Date().getFullYear();
   // eslint-disable-next-line
   const [feedbacks, setFeedbacks] = useState<any>([]);
   const [brand, setBrand] = useState<IBrand>({
