@@ -55,6 +55,7 @@ interface customizeButton {
   bgColor: string;
   border?: string;
   color?: string;
+  btnText?: string;
 }
 interface background {
   img?: string;
@@ -138,6 +139,7 @@ const Template4: FC = () => {
       btnType: '',
       radius: '',
       bgColor: '',
+      btnText: '',
     },
     description: '',
   });
@@ -652,7 +654,14 @@ const Template4: FC = () => {
                             : '',
                       }}
                     >
-                      {codeStatus ? 'Verify another code' : 'Verify'}
+                      {codeStatus
+                        ? 'Verify another code'
+                        : `${
+                            brand?.customizeButton?.btnText
+                              ? brand?.customizeButton?.btnText
+                              : 'Verify'
+                          }`}
+                      {/* {codeStatus ? 'Verify another code' : `${brand?.customizeButton?.btnText?brand?.customizeButton?.btnText:'Verify'}`} */}
                     </button>
                   </form>
                 </div>
@@ -1053,18 +1062,14 @@ const Template4: FC = () => {
               ))}
           </div>
           <div className="home_footer" style={{ color: brand?.socialMediaColor }}>
-          © {currentYear}{' '}
-          <span>
-            <a 
-              href="https://getveriscan.com" 
-              target="_blank" 
-              rel="noreferrer"
-            >
-              VeriScan
-            </a>
-          </span>
-          , All Rights Reserved.
-        </div>
+            © {currentYear}{' '}
+            <span>
+              <a href="https://getveriscan.com" target="_blank" rel="noreferrer">
+                VeriScan
+              </a>
+            </span>
+            , All Rights Reserved.
+          </div>
         </div>
       </div>
     );
