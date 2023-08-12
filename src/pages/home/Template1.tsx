@@ -23,6 +23,7 @@ import { ReactComponent as YouTube } from '../../assets/YouTube.svg';
 import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
 import { ReactComponent as LinkedIn } from '../../assets/LinkedIn.svg';
 import { ReactComponent as Reddit } from '../../assets/Reddit.svg';
+import { ReactComponent as Snapchat } from '../../assets/Snapchat.svg';
 import { ReactComponent as Telegram } from '../../assets/Telegram.svg';
 import './Home.css';
 import './Template3.css';
@@ -330,6 +331,8 @@ const Template1: FC = () => {
   //     return Facebook;
   //   } else if (icon === 'reddit') {
   //     return Reddit;
+    //   } else if (icon === 'snapchat') {
+  //     return Snapchat;
   //   } else if (icon === 'instagram') {
   //     return Instagram;
   //   } else {
@@ -376,7 +379,15 @@ const Template1: FC = () => {
             background: brand?.socialMediaColor,
           }}
         />
-      );
+        );
+      } else if (icon === 'snapchat') {
+        return (
+          <Snapchat
+            style={{
+              background: brand?.socialMediaColor,
+            }}
+          />
+        );
     } else if (icon === 'instagram') {
       return (
         <Instagram
