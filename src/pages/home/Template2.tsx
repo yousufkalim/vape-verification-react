@@ -363,7 +363,15 @@ const Template2: FC = () => {
             background: brand?.socialMediaColor,
           }}
         />
-      );
+        );
+      } else if (icon === 'snapchat') {
+        return (
+          <Snapchat
+            style={{
+              background: brand?.socialMediaColor,
+            }}
+          />
+        );
     } else if (icon === 'instagram') {
       return (
         <Instagram
