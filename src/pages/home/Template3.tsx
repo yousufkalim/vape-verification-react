@@ -313,7 +313,7 @@ const Template3: FC = () => {
   //     return Facebook;
   //   } else if (icon === 'reddit') {
   //     return Reddit;
-    //   } else if (icon === 'snapchat') {
+  //   } else if (icon === 'snapchat') {
   //     return Snapchat;
   //   } else if (icon === 'instagram') {
   //     return Instagram;
@@ -361,15 +361,15 @@ const Template3: FC = () => {
             background: brand?.socialMediaColor,
           }}
         />
-        );
-      } else if (icon === 'snapchat') {
-        return (
-          <Snapchat
-            style={{
-              background: brand?.socialMediaColor,
-            }}
-          />
-        );
+      );
+    } else if (icon === 'snapchat') {
+      return (
+        <Snapchat
+          style={{
+            background: brand?.socialMediaColor,
+          }}
+        />
+      );
     } else if (icon === 'instagram') {
       return (
         <Instagram
@@ -662,8 +662,8 @@ const Template3: FC = () => {
                     !brandcode
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
-                        : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                        : 'invalidresponsePopup3'
+                      : 'withBrandCode3'
                   }`}
                 >
                   {codeStatus && (
@@ -744,8 +744,8 @@ const Template3: FC = () => {
                     !brandcode
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
-                        : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                        : 'invalidresponsePopup3'
+                      : 'withBrandCode3'
                   }`}
                 >
                   {codeStatus && (
@@ -824,8 +824,8 @@ const Template3: FC = () => {
                     !brandcode
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
-                        : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                        : 'invalidresponsePopup3'
+                      : 'withBrandCode3'
                   }`}
                 >
                   {codeStatus && (
@@ -903,8 +903,8 @@ const Template3: FC = () => {
                   !brandcode
                     ? codeStatus === 'This code has already been scanned on'
                       ? 'responsePopup'
-                      : 'invalidresponsePopup'
-                    : 'withBrandCode'
+                      : 'invalidresponsePopup3'
+                    : 'withBrandCode3'
                 }`}
               >
                 {codeStatus && (
@@ -1005,18 +1005,14 @@ const Template3: FC = () => {
               ))}
           </div>
           <div className="home_footer" style={{ color: brand?.socialMediaColor }}>
-          © {currentYear}{' '}
-          <span>
-            <a 
-              href="https://getveriscan.com" 
-              target="_blank" 
-              rel="noreferrer"
-            >
-              VeriScan
-            </a>
-          </span>
-          , All Rights Reserved.
-        </div>
+            © {currentYear}{' '}
+            <span>
+              <a href="https://getveriscan.com" target="_blank" rel="noreferrer">
+                VeriScan
+              </a>
+            </span>
+            , All Rights Reserved.
+          </div>
         </div>
       </div>
     );
