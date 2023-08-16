@@ -529,7 +529,22 @@ const Template4: FC = () => {
                 {/* </LightTooltip> */}
                 {brand?.description?.length && (
                   <div className="home_Desp">
-                    <p>{brand?.description ? brand?.description : ''}</p>
+                    <p
+                      style={{
+                        fontSize: brand?.textTypography?.Body?.fontSize
+                          ? brand?.textTypography?.Body?.fontSize
+                          : '16px',
+                        fontFamily: brand?.textTypography?.Body?.fontName
+                          ? brand?.textTypography?.Body?.fontName
+                          : 'Poppins',
+                        fontWeight: brand?.textTypography?.Body?.fontWeight
+                          ? brand?.textTypography?.Body?.fontWeight
+                          : 400,
+                        // color: brand?.preferences.secondaryColor,
+                      }}
+                    >
+                      {brand?.description ? brand?.description : ''}
+                    </p>
                   </div>
                 )}
               </>
