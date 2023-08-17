@@ -52,6 +52,14 @@
   width: 32%;
   z-index: 1;
 }
+.whitebg {
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+.whitebg3 {
+  border: 1px solid gray;
+  border-radius: 0px;
+}
 
 @media screen and (max-width: 700px) {
   .withBrandCode3 {
