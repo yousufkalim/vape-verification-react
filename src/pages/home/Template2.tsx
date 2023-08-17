@@ -84,6 +84,7 @@ interface IBrand {
   socialMedia?: [];
   customizeButton?: customizeButton;
   description?: string;
+  descriptionColor?: string;
   pageAnimation?: string;
   socialMediaColor?: string;
 }
@@ -144,6 +145,7 @@ const Template2: FC = () => {
       bgColor: '',
     },
     description: '',
+    descriptionColor: '',
   });
 
   console.log('brand', brand);
@@ -526,7 +528,7 @@ const Template2: FC = () => {
                         fontWeight: brand?.textTypography?.Body?.fontWeight
                           ? brand?.textTypography?.Body?.fontWeight
                           : 400,
-                        // color: brand?.preferences.secondaryColor,
+                        color: brand?.descriptionColor ? brand?.descriptionColor : 'black',
                       }}
                     >
                       {brand?.description ? brand?.description : ''}
@@ -685,7 +687,9 @@ const Template2: FC = () => {
                 >
                   {codeStatus && (
                     <>
-                      <div className="home_status">
+                      <div
+                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                      >
                         <div style={{ width: '10%' }}>
                           {/* <span> */}
                           <img style={{ width: '100%' }} src={statusImage} alt="statusImage" />
@@ -767,7 +771,9 @@ const Template2: FC = () => {
                 >
                   {codeStatus && (
                     <>
-                      <div className="home_status">
+                      <div
+                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                      >
                         <div>
                           <span>
                             <img src={statusImage} alt="statusImage" />
@@ -847,7 +853,9 @@ const Template2: FC = () => {
                 >
                   {codeStatus && (
                     <>
-                      <div className="home_status">
+                      <div
+                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                      >
                         <div>
                           <span>
                             <img src={statusImage} alt="statusImage" />
@@ -926,7 +934,9 @@ const Template2: FC = () => {
               >
                 {codeStatus && (
                   <>
-                    <div className="home_status">
+                    <div
+                      className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                    >
                       <div>
                         <span>
                           <img src={statusImage} alt="statusImage" />
