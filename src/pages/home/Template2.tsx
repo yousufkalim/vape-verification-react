@@ -688,7 +688,9 @@ const Template2: FC = () => {
                   {codeStatus && (
                     <>
                       <div
-                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                        className={`home_status ${
+                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
+                        }`}
                       >
                         <div style={{ width: '10%' }}>
                           {/* <span> */}
@@ -772,7 +774,9 @@ const Template2: FC = () => {
                   {codeStatus && (
                     <>
                       <div
-                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                        className={`home_status ${
+                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
+                        }`}
                       >
                         <div>
                           <span>
@@ -854,7 +858,9 @@ const Template2: FC = () => {
                   {codeStatus && (
                     <>
                       <div
-                        className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                        className={`home_status ${
+                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
+                        }`}
                       >
                         <div>
                           <span>
@@ -935,7 +941,9 @@ const Template2: FC = () => {
                 {codeStatus && (
                   <>
                     <div
-                      className={`home_status ${brand?.background?.type === 'NoBG' && 'whitebg'}`}
+                      className={`home_status ${
+                        brand?.background?.type === 'NoBG' ? 'whitebg' : ''
+                      }`}
                     >
                       <div>
                         <span>
