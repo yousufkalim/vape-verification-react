@@ -87,6 +87,8 @@ interface IBrand {
   descriptionColor?: string;
   pageAnimation?: string;
   socialMediaColor?: string;
+  emailToggle: boolean;
+  phoneToggle: boolean;
 }
 interface IfeedbackForm {
   _id: string;
@@ -145,6 +147,8 @@ const Template1: FC = () => {
     },
     description: '',
     descriptionColor: '',
+    emailToggle: false,
+    phoneToggle: false,
   });
 
   // console.log('codeStatus', codeStatus);
@@ -620,58 +624,74 @@ const Template1: FC = () => {
                             onChange={handleChange}
                           />
                         </div>
-                        <div
-                          // className="field_label"
-                          style={{
-                            fontSize: brand?.textTypography?.Paragraph?.fontSize
-                              ? brand?.textTypography?.Paragraph?.fontSize
-                              : '1.4rem',
-                            fontFamily: brand?.textTypography?.Paragraph?.fontName
-                              ? brand?.textTypography?.Paragraph?.fontName
-                              : 'Poppins',
-                            fontWeight: brand?.textTypography?.Paragraph?.fontWeight
-                              ? brand?.textTypography?.Paragraph?.fontWeight
-                              : '100',
-                            // color: brand?.preferences.secondaryColor,
-                          }}
-                        >
-                          Email
-                        </div>
-                        <div>
-                          <input
-                            className="input_field"
-                            placeholder="example@veriscan.com"
-                            type="text"
-                            // value={code}
-                            // onChange={handleChange}
-                          />
-                        </div>
-                        <div
-                          // className="field_label"
-                          style={{
-                            fontSize: brand?.textTypography?.Paragraph?.fontSize
-                              ? brand?.textTypography?.Paragraph?.fontSize
-                              : '1.4rem',
-                            fontFamily: brand?.textTypography?.Paragraph?.fontName
-                              ? brand?.textTypography?.Paragraph?.fontName
-                              : 'Poppins',
-                            fontWeight: brand?.textTypography?.Paragraph?.fontWeight
-                              ? brand?.textTypography?.Paragraph?.fontWeight
-                              : '100',
-                            // color: brand?.preferences.secondaryColor,
-                          }}
-                        >
-                          Phone Number
-                        </div>
-                        <div>
-                          <input
-                            className="input_field"
-                            placeholder="(999) 999-999"
-                            type="text"
-                            // value={code}
-                            // onChange={handleChange}
-                          />
-                        </div>
+
+                        {brand?.emailToggle ? (
+                          <>
+                            {' '}
+                            <div
+                              // className="field_label"
+                              style={{
+                                fontSize: brand?.textTypography?.Paragraph?.fontSize
+                                  ? brand?.textTypography?.Paragraph?.fontSize
+                                  : '1.4rem',
+                                fontFamily: brand?.textTypography?.Paragraph?.fontName
+                                  ? brand?.textTypography?.Paragraph?.fontName
+                                  : 'Poppins',
+                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                                  ? brand?.textTypography?.Paragraph?.fontWeight
+                                  : '100',
+                                // color: brand?.preferences.secondaryColor,
+                              }}
+                            >
+                              Email
+                            </div>
+                            <div>
+                              <input
+                                className="input_field"
+                                placeholder="example@veriscan.com"
+                                type="text"
+                                // value={code}
+                                // onChange={handleChange}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          ''
+                        )}
+
+                        {brand?.phoneToggle ? (
+                          <>
+                            {' '}
+                            <div
+                              // className="field_label"
+                              style={{
+                                fontSize: brand?.textTypography?.Paragraph?.fontSize
+                                  ? brand?.textTypography?.Paragraph?.fontSize
+                                  : '1.4rem',
+                                fontFamily: brand?.textTypography?.Paragraph?.fontName
+                                  ? brand?.textTypography?.Paragraph?.fontName
+                                  : 'Poppins',
+                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                                  ? brand?.textTypography?.Paragraph?.fontWeight
+                                  : '100',
+                                // color: brand?.preferences.secondaryColor,
+                              }}
+                            >
+                              Phone Number
+                            </div>
+                            <div>
+                              <input
+                                className="input_field"
+                                placeholder="(999) 999-999"
+                                type="text"
+                                // value={code}
+                                // onChange={handleChange}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          ''
+                        )}
                       </>
                     )}
                     {activeStep === 1 &&
