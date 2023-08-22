@@ -421,9 +421,7 @@ const Template4: FC = () => {
     console.log('codeStatus', codeStatus);
   }
   // eslint-disable-next-line
-  const Selectedimg = brand?.background?.selectedImg
-    ? `${mediaUrl}/${brand?.background?.selectedImg}`
-    : '';
+  const Selectedimg = brand?.background?.selectedImg ? brand?.background?.selectedImg : '';
   const uploadedImg = brand?.background?.img ? `${mediaUrl}/${brand?.background?.img}` : '';
 
   const handleChangeinput = (e: React.ChangeEvent<HTMLInputElement>, i: any, field: any): any => {
