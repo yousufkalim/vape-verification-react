@@ -23,7 +23,6 @@ import { ReactComponent as YouTube } from '../../assets/YouTube.svg';
 import { ReactComponent as Instagram } from '../../assets/Instagram.svg';
 import { ReactComponent as LinkedIn } from '../../assets/LinkedIn.svg';
 import { ReactComponent as Reddit } from '../../assets/Reddit.svg';
-import { ReactComponent as Snapchat } from '../../assets/Snapchat.svg';
 import { ReactComponent as Telegram } from '../../assets/Telegram.svg';
 import './Home.css';
 import './Template3.css';
@@ -84,11 +83,8 @@ interface IBrand {
   socialMedia?: [];
   customizeButton?: customizeButton;
   description?: string;
-  descriptionColor?: string;
   pageAnimation?: string;
   socialMediaColor?: string;
-  emailToggle: boolean;
-  phoneToggle: boolean;
 }
 interface IfeedbackForm {
   _id: string;
@@ -119,7 +115,6 @@ const Template1: FC = () => {
   const [statusBg, setStatusBg] = useState<string>('');
   const [statusImage, setStatusImage] = useState<string>('');
   const [feedbackForms, setFeedbackForms] = useState<IfeedbackForm[] | any>([]);
-  const currentYear = new Date().getFullYear();
   // eslint-disable-next-line
   const [feedbacks, setFeedbacks] = useState<any>([]);
   const [brand, setBrand] = useState<IBrand>({
@@ -146,9 +141,6 @@ const Template1: FC = () => {
       bgColor: '',
     },
     description: '',
-    descriptionColor: '',
-    emailToggle: false,
-    phoneToggle: false,
   });
 
   // console.log('codeStatus', codeStatus);
@@ -337,8 +329,6 @@ const Template1: FC = () => {
   //     return Facebook;
   //   } else if (icon === 'reddit') {
   //     return Reddit;
-  //   } else if (icon === 'snapchat') {
-  //     return Snapchat;
   //   } else if (icon === 'instagram') {
   //     return Instagram;
   //   } else {
@@ -386,14 +376,6 @@ const Template1: FC = () => {
           }}
         />
       );
-    } else if (icon === 'snapchat') {
-      return (
-        <Snapchat
-          style={{
-            background: brand?.socialMediaColor,
-          }}
-        />
-      );
     } else if (icon === 'instagram') {
       return (
         <Instagram
@@ -431,9 +413,10 @@ const Template1: FC = () => {
   }, [brand]);
 
   // eslint-disable-next-line
-  const Selectedimg = brand?.background?.selectedImg
-    ? `${mediaUrl}/${brand?.background?.selectedImg}`
-    : '';
+  // const Selectedimg = brand?.background?.selectedImg
+  //   ? `${mediaUrl}/${brand?.background?.selectedImg}`
+  //   : '';
+  const Selectedimg = brand?.background?.selectedImg ? brand?.background?.selectedImg : '';
   const uploadedImg = brand?.background?.img ? `${mediaUrl}/${brand?.background?.img}` : '';
 
   const handleChangeinput = (e: React.ChangeEvent<HTMLInputElement>, i: any, field: any): any => {
@@ -537,22 +520,7 @@ const Template1: FC = () => {
                 {/* </LightTooltip> */}
                 {brand?.description?.length && (
                   <div className="home_Desp">
-                    <p
-                      style={{
-                        fontSize: brand?.textTypography?.Body?.fontSize
-                          ? brand?.textTypography?.Body?.fontSize
-                          : '16px',
-                        fontFamily: brand?.textTypography?.Body?.fontName
-                          ? brand?.textTypography?.Body?.fontName
-                          : 'Poppins',
-                        fontWeight: brand?.textTypography?.Body?.fontWeight
-                          ? brand?.textTypography?.Body?.fontWeight
-                          : 400,
-                        color: brand?.descriptionColor ? brand?.descriptionColor : 'black',
-                      }}
-                    >
-                      {brand?.description ? brand?.description : ''}
-                    </p>
+                    <p>{brand?.description ? brand?.description : ''}</p>
                   </div>
                 )}
               </>
@@ -624,74 +592,6 @@ const Template1: FC = () => {
                             onChange={handleChange}
                           />
                         </div>
-
-                        {brand?.emailToggle ? (
-                          <>
-                            {' '}
-                            <div
-                              // className="field_label"
-                              style={{
-                                fontSize: brand?.textTypography?.Paragraph?.fontSize
-                                  ? brand?.textTypography?.Paragraph?.fontSize
-                                  : '1.4rem',
-                                fontFamily: brand?.textTypography?.Paragraph?.fontName
-                                  ? brand?.textTypography?.Paragraph?.fontName
-                                  : 'Poppins',
-                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
-                                  ? brand?.textTypography?.Paragraph?.fontWeight
-                                  : '100',
-                                // color: brand?.preferences.secondaryColor,
-                              }}
-                            >
-                              Email
-                            </div>
-                            <div>
-                              <input
-                                className="input_field"
-                                placeholder="example@veriscan.com"
-                                type="text"
-                                // value={code}
-                                // onChange={handleChange}
-                              />
-                            </div>
-                          </>
-                        ) : (
-                          ''
-                        )}
-
-                        {brand?.phoneToggle ? (
-                          <>
-                            {' '}
-                            <div
-                              // className="field_label"
-                              style={{
-                                fontSize: brand?.textTypography?.Paragraph?.fontSize
-                                  ? brand?.textTypography?.Paragraph?.fontSize
-                                  : '1.4rem',
-                                fontFamily: brand?.textTypography?.Paragraph?.fontName
-                                  ? brand?.textTypography?.Paragraph?.fontName
-                                  : 'Poppins',
-                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
-                                  ? brand?.textTypography?.Paragraph?.fontWeight
-                                  : '100',
-                                // color: brand?.preferences.secondaryColor,
-                              }}
-                            >
-                              Phone Number
-                            </div>
-                            <div>
-                              <input
-                                className="input_field"
-                                placeholder="(999) 999-999"
-                                type="text"
-                                // value={code}
-                                // onChange={handleChange}
-                              />
-                            </div>
-                          </>
-                        ) : (
-                          ''
-                        )}
                       </>
                     )}
                     {activeStep === 1 &&
@@ -778,16 +678,12 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode1'
+                      : 'withBrandCode'
                   }`}
                 >
                   {codeStatus && (
                     <>
-                      <div
-                        className={`home_status ${
-                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
-                        }`}
-                      >
+                      <div className="home_status">
                         <div style={{ width: '10%' }}>
                           {/* <span> */}
                           <img style={{ width: '100%' }} src={statusImage} alt="statusImage" />
@@ -864,16 +760,12 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode1'
+                      : 'withBrandCode'
                   }`}
                 >
                   {codeStatus && (
                     <>
-                      <div
-                        className={`home_status ${
-                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
-                        }`}
-                      >
+                      <div className="home_status">
                         <div>
                           <span>
                             <img src={statusImage} alt="statusImage" />
@@ -948,16 +840,12 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode1'
+                      : 'withBrandCode'
                   }`}
                 >
                   {codeStatus && (
                     <>
-                      <div
-                        className={`home_status ${
-                          brand?.background?.type === 'NoBG' ? 'whitebg' : ''
-                        }`}
-                      >
+                      <div className="home_status">
                         <div>
                           <span>
                             <img src={statusImage} alt="statusImage" />
@@ -1031,16 +919,12 @@ const Template1: FC = () => {
                     ? codeStatus === 'This code has already been scanned on'
                       ? 'responsePopup'
                       : 'invalidresponsePopup'
-                    : 'withBrandCode1'
+                    : 'withBrandCode'
                 }`}
               >
                 {codeStatus && (
                   <>
-                    <div
-                      className={`home_status ${
-                        brand?.background?.type === 'NoBG' ? 'whitebg' : ''
-                      }`}
-                    >
+                    <div className="home_status">
                       <div>
                         <span>
                           <img src={statusImage} alt="statusImage" />
@@ -1137,12 +1021,13 @@ const Template1: FC = () => {
                 </>
               ))}
           </div>
-          <div className="home_footer" style={{ color: brand?.socialMediaColor }}>
-            © {currentYear}{' '}
+          <div className="home_footer">
+            © 2023{' '}
             <span>
-              <a href="https://getveriscan.com" target="_blank" rel="noreferrer">
-                VeriScan
-              </a>
+              VeriScan
+              {/* <a href="https://falconitconsultant.com" target="_blank" rel="noreferrer">
+                  @Falcon Consulting
+                </a> */}
             </span>
             , All Rights Reserved.
           </div>
