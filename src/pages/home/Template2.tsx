@@ -1084,9 +1084,9 @@ const Template2: FC = () => {
             )}
           </div>
         </motion.div>
-        <div className="">
+        {/* <div className="">
           <img src={logo} className="logoFixed_3" />
-        </div>
+        </div> */}
         <div
           className="bottomDiv"
           style={
