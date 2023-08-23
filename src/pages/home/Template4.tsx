@@ -292,6 +292,9 @@ const Template4: FC = () => {
             setCodeStatus(message);
             setStatusBg(InValidBg);
             setStatusImage(InValidImage);
+            // if (brandcode && brand.id) {
+            //   navigate(`/${brand?.name}`);
+            // }
           }
           if (status === 'invalidType') {
             const feedbackIs = feedbackForms?.map((feedbackForm: any): any => {

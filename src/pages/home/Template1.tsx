@@ -83,8 +83,11 @@ interface IBrand {
   socialMedia?: [];
   customizeButton?: customizeButton;
   description?: string;
+  descriptionColor?: string;
   pageAnimation?: string;
   socialMediaColor?: string;
+  emailToggle: boolean;
+  phoneToggle: boolean;
 }
 interface IfeedbackForm {
   _id: string;
@@ -141,6 +144,9 @@ const Template1: FC = () => {
       bgColor: '',
     },
     description: '',
+    descriptionColor: '',
+    emailToggle: false,
+    phoneToggle: false,
   });
 
   // console.log('codeStatus', codeStatus);
@@ -520,7 +526,22 @@ const Template1: FC = () => {
                 {/* </LightTooltip> */}
                 {brand?.description?.length && (
                   <div className="home_Desp">
-                    <p>{brand?.description ? brand?.description : ''}</p>
+                    <p
+                      style={{
+                        fontSize: brand?.textTypography?.Body?.fontSize
+                          ? brand?.textTypography?.Body?.fontSize
+                          : '16px',
+                        fontFamily: brand?.textTypography?.Body?.fontName
+                          ? brand?.textTypography?.Body?.fontName
+                          : 'Poppins',
+                        fontWeight: brand?.textTypography?.Body?.fontWeight
+                          ? brand?.textTypography?.Body?.fontWeight
+                          : 400,
+                        color: brand?.descriptionColor ? brand?.descriptionColor : 'black',
+                      }}
+                    >
+                      {brand?.description ? brand?.description : ''}
+                    </p>
                   </div>
                 )}
               </>
@@ -592,6 +613,73 @@ const Template1: FC = () => {
                             onChange={handleChange}
                           />
                         </div>
+                        {brand?.emailToggle ? (
+                          <>
+                            {' '}
+                            <div
+                              // className="field_label"
+                              style={{
+                                fontSize: brand?.textTypography?.Paragraph?.fontSize
+                                  ? brand?.textTypography?.Paragraph?.fontSize
+                                  : '1.4rem',
+                                fontFamily: brand?.textTypography?.Paragraph?.fontName
+                                  ? brand?.textTypography?.Paragraph?.fontName
+                                  : 'Poppins',
+                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                                  ? brand?.textTypography?.Paragraph?.fontWeight
+                                  : '100',
+                                // color: brand?.preferences.secondaryColor,
+                              }}
+                            >
+                              Email
+                            </div>
+                            <div>
+                              <input
+                                className="input_field"
+                                placeholder="example@veriscan.com"
+                                type="text"
+                                // value={code}
+                                // onChange={handleChange}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          ''
+                        )}
+
+                        {brand?.phoneToggle ? (
+                          <>
+                            {' '}
+                            <div
+                              // className="field_label"
+                              style={{
+                                fontSize: brand?.textTypography?.Paragraph?.fontSize
+                                  ? brand?.textTypography?.Paragraph?.fontSize
+                                  : '1.4rem',
+                                fontFamily: brand?.textTypography?.Paragraph?.fontName
+                                  ? brand?.textTypography?.Paragraph?.fontName
+                                  : 'Poppins',
+                                fontWeight: brand?.textTypography?.Paragraph?.fontWeight
+                                  ? brand?.textTypography?.Paragraph?.fontWeight
+                                  : '100',
+                                // color: brand?.preferences.secondaryColor,
+                              }}
+                            >
+                              Phone Number
+                            </div>
+                            <div>
+                              <input
+                                className="input_field"
+                                placeholder="(999) 999-999"
+                                type="text"
+                                // value={code}
+                                // onChange={handleChange}
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          ''
+                        )}
                       </>
                     )}
                     {activeStep === 1 &&
