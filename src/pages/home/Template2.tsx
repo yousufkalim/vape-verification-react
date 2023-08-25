@@ -198,7 +198,11 @@ const Template2: FC = () => {
   }, []);
   useEffect(() => {
     if (brandcode && brand.id) {
-      verifyBrandCode(brandcode, 'nfc');
+      if (brandcode.length === 17) {
+        verifyBrandCode(brandcode, 'nfc');
+      } else {
+        navigate(`/${brand?.name}`);
+      }
     }
   }, [brand]);
 
@@ -624,7 +628,7 @@ const Template2: FC = () => {
                         </div>
                         <div>
                           <input
-                            className="input_field"
+                            className="input_field input_field_2"
                             placeholder="example@veriscan.com"
                             type="text"
                             // value={code}
@@ -658,7 +662,7 @@ const Template2: FC = () => {
                         </div>
                         <div>
                           <input
-                            className="input_field"
+                            className="input_field input_field_2"
                             placeholder="(999) 999-999"
                             type="text"
                             // value={code}

@@ -199,7 +199,12 @@ const Template4: FC = () => {
   console.log('Brand ', brand);
   useEffect(() => {
     if (brandcode && brand.id) {
-      verifyBrandCode(brandcode, 'nfc');
+      console.log('brandcode', brandcode.length);
+      if (brandcode.length === 17) {
+        verifyBrandCode(brandcode, 'nfc');
+      } else {
+        navigate(`/${brand?.name}`);
+      }
     }
   }, [brand]);
 
@@ -236,7 +241,6 @@ const Template4: FC = () => {
       code_type: codeType,
       feedbacks: allFields,
     };
-    console.log('res2', bCode);
     if (bCode !== '') {
       setSubmitLoading(true);
       api<IBody>('post', '/codes/validate', body)
@@ -420,9 +424,7 @@ const Template4: FC = () => {
   }, [brand]);
 
   // eslint-disable-next-line
-  {
-    console.log('codeStatus', codeStatus);
-  }
+
   // eslint-disable-next-line
   const Selectedimg = brand?.background?.selectedImg ? brand?.background?.selectedImg : '';
   const uploadedImg = brand?.background?.img ? `${mediaUrl}/${brand?.background?.img}` : '';
