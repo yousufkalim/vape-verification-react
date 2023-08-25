@@ -200,7 +200,11 @@ const Template1: FC = () => {
   }, []);
   useEffect(() => {
     if (brandcode && brand.id) {
-      verifyBrandCode(brandcode, 'nfc');
+      if (brandcode.length === 17) {
+        verifyBrandCode(brandcode, 'nfc');
+      } else {
+        navigate(`/${brand?.name}`);
+      }
     }
   }, [brand]);
 
@@ -766,7 +770,7 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                      : 'withBrandCode2'
                   }`}
                 >
                   {codeStatus && (
@@ -848,7 +852,7 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                      : 'withBrandCode2'
                   }`}
                 >
                   {codeStatus && (
@@ -928,7 +932,7 @@ const Template1: FC = () => {
                       ? codeStatus === 'This code has already been scanned on'
                         ? 'responsePopup'
                         : 'invalidresponsePopup'
-                      : 'withBrandCode'
+                      : 'withBrandCode2'
                   }`}
                 >
                   {codeStatus && (
@@ -1007,7 +1011,7 @@ const Template1: FC = () => {
                     ? codeStatus === 'This code has already been scanned on'
                       ? 'responsePopup'
                       : 'invalidresponsePopup'
-                    : 'withBrandCode'
+                    : 'withBrandCode2'
                 }`}
               >
                 {codeStatus && (
