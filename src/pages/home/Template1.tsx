@@ -639,7 +639,7 @@ const Template1: FC = () => {
                             </div>
                             <div>
                               <input
-                                className="input_field"
+                                className="input_field input_field_four"
                                 placeholder="example@veriscan.com"
                                 type="text"
                                 // value={code}
@@ -673,7 +673,7 @@ const Template1: FC = () => {
                             </div>
                             <div>
                               <input
-                                className="input_field"
+                                className="input_field input_field_four"
                                 placeholder="(999) 999-999"
                                 type="text"
                                 // value={code}
