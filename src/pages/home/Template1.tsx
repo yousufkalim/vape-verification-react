@@ -611,7 +611,7 @@ const Template1: FC = () => {
                         <div>
                           <input
                             className="input_field input_field_four"
-                            placeholder="A1A1A-A1A1A"
+                            placeholder="AAAAA-AAAAA"
                             type="text"
                             value={code}
                             onChange={handleChange}
