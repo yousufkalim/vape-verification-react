@@ -1034,7 +1034,7 @@ const Template4: FC = () => {
                             <div className="morinfoDiv">
                               <img src={Question} alt="Question" />
                               <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                href="https://getveriscan.com/docs/what-your-results-mean/"
                                 rel="noreferrer"
                                 target="_blank"
                               ></a>
@@ -1047,7 +1047,7 @@ const Template4: FC = () => {
                           <div className="Scaned_date_main_div">
                             <div className="morinfoDiv">
                               <a
-                                href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                                href="https://getveriscan.com/docs/what-your-results-mean/"
                                 rel="noreferrer"
                                 target="_blank"
                               >
@@ -1064,7 +1064,7 @@ const Template4: FC = () => {
                           Do not use product until verifying authenticity
                           <div className="morinfoDiv">
                             <a
-                              href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                              href="https://getveriscan.com/docs/what-your-results-mean/"
                               rel="noreferrer"
                               target="_blank"
                             >
@@ -1124,7 +1124,7 @@ const Template4: FC = () => {
                           </div>
                           <div className="morinfoDiv">
                             <a
-                              href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                              href="https://getveriscan.com/docs/what-your-results-mean/"
                               rel="noreferrer"
                               target="_blank"
                             >
@@ -1139,7 +1139,7 @@ const Template4: FC = () => {
                         <div className="Scaned_date_main_div">
                           <div className="morinfoDiv">
                             <a
-                              href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                              href="https://getveriscan.com/docs/what-your-results-mean/"
                               rel="noreferrer"
                               target="_blank"
                             >
@@ -1156,7 +1156,7 @@ const Template4: FC = () => {
                         Do not use product until verifying authenticity
                         <div className="morinfoDiv">
                           <a
-                            href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
+                            href="https://getveriscan.com/docs/what-your-results-mean/"
                             rel="noreferrer"
                             target="_blank"
                           >
