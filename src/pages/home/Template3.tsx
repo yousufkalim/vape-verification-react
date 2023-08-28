@@ -786,13 +786,14 @@ const Template3: FC = () => {
                                   <span>{alreadyScanDate}</span>
                                 </div>
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -800,13 +801,14 @@ const Template3: FC = () => {
                             {codeStatus === 'This product is valid.' && (
                               <div className="Scaned_date_main_div">
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -816,13 +818,14 @@ const Template3: FC = () => {
                             <div className="invalidcodeText">
                               <p>Do not use product until verifying authenticity</p>
                               <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
                                 <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                   rel="noreferrer"
                                   target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
+                                >
+                                  <img src={Question} alt="Question" />
+                                  <div className="moreInfospan"> More information</div>
+                                </a>
                               </div>
                             </div>
                           )}
@@ -870,13 +873,14 @@ const Template3: FC = () => {
                                 <span className="dateLine"></span>
                                 <span>{alreadyScanDate}</span>
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -884,13 +888,14 @@ const Template3: FC = () => {
                             {codeStatus === 'This product is valid.' && (
                               <div className="Scaned_date_main_div">
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -900,13 +905,14 @@ const Template3: FC = () => {
                             <div className="invalidcodeText">
                               Do not use product until verifying authenticity
                               <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
                                 <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                   rel="noreferrer"
                                   target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
+                                >
+                                  <img src={Question} alt="Question" />
+                                  <div className="moreInfospan"> More information</div>
+                                </a>
                               </div>
                             </div>
                           )}
@@ -954,13 +960,14 @@ const Template3: FC = () => {
                                 <span className="dateLine"></span>
                                 <span>{alreadyScanDate}</span>
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -968,13 +975,14 @@ const Template3: FC = () => {
                             {codeStatus === 'This product is valid.' && (
                               <div className="Scaned_date_main_div">
                                 <div className="morinfoDiv">
-                                  <img src={Question} alt="Question" />
                                   <a
-                                    href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                    href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                     rel="noreferrer"
                                     target="_blank"
-                                  ></a>
-                                  <div className="moreInfospan"> More information</div>
+                                  >
+                                    <img src={Question} alt="Question" />
+                                    <div className="moreInfospan"> More information</div>
+                                  </a>
                                 </div>
                               </div>
                             )}
@@ -984,13 +992,14 @@ const Template3: FC = () => {
                             <div className="invalidcodeText">
                               Do not use product until verifying authenticity
                               <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
                                 <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                   rel="noreferrer"
                                   target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
+                                >
+                                  <img src={Question} alt="Question" />
+                                  <div className="moreInfospan"> More information</div>
+                                </a>
                               </div>
                             </div>
                           )}
@@ -1037,13 +1046,14 @@ const Template3: FC = () => {
                               <span className="dateLine"></span>
                               <span>{alreadyScanDate}</span>
                               <div className="morinfoDiv already_scaned">
-                                <img src={Question} alt="Question" />
                                 <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                   rel="noreferrer"
                                   target="_blank"
-                                ></a>
-                                <div className="moreInfospan "> More information</div>
+                                >
+                                  <img src={Question} alt="Question" />
+                                  <div className="moreInfospan"> More information</div>
+                                </a>
                               </div>
                             </div>
                           )}
@@ -1051,13 +1061,14 @@ const Template3: FC = () => {
                           {codeStatus === 'This product is valid.' && (
                             <div className="Scaned_date_main_div">
                               <div className="morinfoDiv">
-                                <img src={Question} alt="Question" />
                                 <a
-                                  href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                  href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                   rel="noreferrer"
                                   target="_blank"
-                                ></a>
-                                <div className="moreInfospan"> More information</div>
+                                >
+                                  <img src={Question} alt="Question" />
+                                  <div className="moreInfospan"> More information</div>
+                                </a>
                               </div>
                             </div>
                           )}
@@ -1067,13 +1078,14 @@ const Template3: FC = () => {
                           <div className="invalidcodeText">
                             Do not use product until verifying authenticity
                             <div className="morinfoDiv">
-                              <img src={Question} alt="Question" />
                               <a
-                                href="https://getveriscan.com/docs/what-your-results-mean/#product-is-valid"
+                                href="https://getveriscan.com/docs/how-to-enter-your-products-code/"
                                 rel="noreferrer"
                                 target="_blank"
-                              ></a>
-                              <div className="moreInfospan"> More information</div>
+                              >
+                                <img src={Question} alt="Question" />
+                                <div className="moreInfospan"> More information</div>
+                              </a>
                             </div>
                           </div>
                         )}

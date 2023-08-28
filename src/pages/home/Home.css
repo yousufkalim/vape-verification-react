@@ -376,12 +376,17 @@
   align-items: center;
   justify-content: end;
   position: relative;
-  cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
   /* margin: 2% 0% 0% 10%; */
   width: 98%;
   gap: 2%;
+}
+.morinfoDiv a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
 }
 .moreInfospan {
   font-size: 13px;
