@@ -3,6 +3,8 @@ import notFound from '../../assets/home/404.svg';
 import notFoundB from '../../assets/home/404b.svg';
 import './NotFound.css';
 
+const currentYear = new Date().getFullYear();
+
 const NotFound: FC = () => {
   return (
     <>
@@ -25,12 +27,11 @@ const NotFound: FC = () => {
         </div>
         <div className="NotFoundDiv2">
           <div className="home_footer">
-            © 2023{' '}
+            © {currentYear}{' '}
             <span>
-              VeriScan
-              {/* <a href="https://falconitconsultant.com" target="_blank" rel="noreferrer">
-                  @Falcon Consulting
-                </a> */}
+              <a href="https://getveriscan.com" target="_blank" rel="noreferrer">
+                VeriScan
+              </a>
             </span>
             , All Rights Reserved.
           </div>
