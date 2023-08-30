@@ -58,6 +58,7 @@ interface customizeButton {
   bgColor: string;
   border?: string;
   color?: string;
+  btnText?: string;
 }
 interface background {
   img?: string;
@@ -143,6 +144,7 @@ const Template1: FC = () => {
       btnType: '',
       radius: '',
       bgColor: '',
+      btnText: '',
     },
     description: '',
     descriptionColor: '',
@@ -764,7 +766,16 @@ const Template1: FC = () => {
                             : '',
                       }}
                     >
-                      {codeStatus ? (activeStep === 2 ? 'Back' : 'Check Verification') : 'Verify'}
+                      {codeStatus
+                        ? activeStep === 2
+                          ? 'Back'
+                          : 'Check Verification'
+                        : `${
+                            brand?.customizeButton?.btnText
+                              ? brand?.customizeButton?.btnText
+                              : 'Verify'
+                          }`}
+                      {/* {codeStatus ? (activeStep === 2 ? 'Back' : 'Check Verification') : 'Verify'} */}
                     </button>
                   </form>
                 </div>
