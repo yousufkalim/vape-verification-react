@@ -190,6 +190,7 @@
   border-radius: 20px;
   margin-bottom: 40px;
   z-index: 1;
+  padding: 18px 15px;
 }
 .parmscoderesponsePopupAlreadyscaned {
   width: 50%;
@@ -451,6 +452,7 @@
   }
   .responsePopup {
     margin-bottom: 30px;
+    padding: 0px 0px;
   }
   .parmscoderesponsePopupAlreadyscaned {
     margin-bottom: 30px;
@@ -537,6 +539,7 @@
   .responsePopup {
     width: 90%;
     margin-bottom: 40px;
+    padding: 0px 0px;
   }
   .parmscoderesponsePopupAlreadyscaned {
     width: 90%;
