@@ -90,6 +90,10 @@ interface IBrand {
   socialMediaColor?: string;
   emailToggle: boolean;
   phoneToggle: boolean;
+  emailRequire: boolean;
+  phoneRequire: boolean;
+  emailPlaceholder: string;
+  phonePlaceholder: string;
 }
 interface IfeedbackForm {
   _id: string;
@@ -152,6 +156,10 @@ const Template2: FC = () => {
     descriptionColor: '',
     emailToggle: false,
     phoneToggle: false,
+    emailRequire: false,
+    phoneRequire: false,
+    emailPlaceholder: '',
+    phonePlaceholder: '',
   });
 
   console.log('brand', brand);
@@ -631,7 +639,12 @@ const Template2: FC = () => {
                         <div>
                           <input
                             className="input_field input_field_2"
-                            placeholder="example@veriscan.com"
+                            placeholder={
+                              brand?.emailPlaceholder
+                                ? brand?.emailPlaceholder
+                                : 'example@veriscan.com'
+                            }
+                            required={brand?.emailRequire}
                             type="text"
                             // value={code}
                             // onChange={handleChange}
@@ -665,7 +678,10 @@ const Template2: FC = () => {
                         <div>
                           <input
                             className="input_field input_field_2"
-                            placeholder="(999) 999-999"
+                            placeholder={
+                              brand?.phonePlaceholder ? brand?.phonePlaceholder : '(999) 999-999'
+                            }
+                            required={brand?.phoneRequire}
                             type="text"
                             // value={code}
                             // onChange={handleChange}
