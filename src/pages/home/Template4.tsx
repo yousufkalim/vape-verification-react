@@ -88,6 +88,10 @@ interface IBrand {
   socialMediaColor?: string;
   emailToggle: boolean;
   phoneToggle: boolean;
+  emailRequire: boolean;
+  phoneRequire: boolean;
+  emailPlaceholder: string;
+  phonePlaceholder: string;
 }
 interface IfeedbackForm {
   _id: string;
@@ -149,6 +153,10 @@ const Template4: FC = () => {
     descriptionColor: '',
     emailToggle: false,
     phoneToggle: false,
+    emailRequire: false,
+    phoneRequire: false,
+    emailPlaceholder: '',
+    phonePlaceholder: '',
   });
   console.log('brand', brand);
   // console.log('codeStatus', codeStatus);
@@ -408,10 +416,15 @@ const Template4: FC = () => {
   };
   useEffect((): void => {
     const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-
+    console.log('favicon', favicon);
     if (brand?.favIcon) {
-      const favIs = `${mediaUrl}/${brand?.favIcon}`;
+      console.log('brand?.favIcon', brand?.favIcon);
+      // const favIs = `${mediaUrl}/${brand?.favIcon}`;
+      const favIs = `${mediaUrl}/${brand?.favIcon}?v=${Date.now()}`;
+
+      console.log('favIs', favIs);
       favicon.href = favIs;
+      console.log('favicon2', favicon);
     }
   }, [brand]);
 
@@ -644,8 +657,14 @@ const Template4: FC = () => {
                         <div>
                           <input
                             className="input_field"
-                            placeholder="example@veriscan.com"
+                            placeholder={
+                              brand?.emailPlaceholder
+                                ? brand?.emailPlaceholder
+                                : 'example@veriscan.com'
+                            }
+                            required={brand?.emailRequire}
                             type="text"
+
                             // value={code}
                             // onChange={handleChange}
                           />
@@ -678,8 +697,12 @@ const Template4: FC = () => {
                         <div>
                           <input
                             className="input_field"
-                            placeholder="(999) 999-999"
+                            // placeholder="(999) 999-999"
                             type="text"
+                            placeholder={
+                              brand?.phonePlaceholder ? brand?.phonePlaceholder : '(999) 999-999'
+                            }
+                            required={brand?.phoneRequire}
                             // value={code}
                             // onChange={handleChange}
                           />
